@@ -1,0 +1,52 @@
+@import url("observablehq:default.css");
+@import url("theme-cotton,near-midnight.css");
+
+:root {
+  --theme-foreground-focus: #339966;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+  --theme-background-a: #ffffff;
+  }
+}
+
+#observablehq-footer {
+  display: flex;
+  flex-flow: column;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+@media (min-width: 640px) {
+  #observablehq-footer {
+    padding-right: calc(192px + 1rem);
+  }
+}
+
+#observablehq-footer nav {
+  align-self: center;
+  width: 100%;
+}
+
+#observablehq-sidebar {
+  --observablehq-sidebar-padding-left: calc(max(0rem, (100vw - var(--observablehq-max-width)) / 3));
+  width: calc(272px + calc(var(--observablehq-sidebar-padding-left) * 1.5));
+}
+
+.grid {
+  margin-top: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+p, table, figure, figcaption, h1, h2, h3, h4, h5, h6, .katex-display {
+  max-width: 900px;
+}
+
+input {
+  accent-color: var(--theme-foreground-alt);
+}

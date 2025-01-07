@@ -1,2 +1,6 @@
-scripts/.Rhistory
-scripts/PISA
+.DS_Store
+/dist/
+node_modules/
+yarn-error.log
+guide.md
+.Rproj.user
