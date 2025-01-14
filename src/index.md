@@ -36,6 +36,10 @@ The project examines the impact of socio-cultural and economic inequalities on a
     <h2>License</h2>
     <p>Description of the tools we used and the conditions for reusing our work.</p>
   </a>
+  <a class="card" href="documentation">
+    <h2>Documentation</h2>
+    <p>Overview of the datasets, including legal, ethical, and technical aspects, as well as their sustainability.</p>
+  </a>
 </div>
 
 <style>

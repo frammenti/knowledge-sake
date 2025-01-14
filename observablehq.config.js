@@ -45,6 +45,12 @@ export default {
       path: "license",
       pages: [
       ]
+    },
+    {
+      name: "Documentation",
+      path: "documentation",
+      pages: [
+      ]
     }
   ],
 
