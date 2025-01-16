@@ -1,8 +1,8 @@
 ```js
 // Load and join the files
 const data = Promise.all([
-  FileAttachment("../data/ds1/scores_vs_escs_00_09.csv").csv({typed: true}),
-  FileAttachment("../data/ds1/scores_vs_escs_12_22.csv").csv({typed: true})
+  FileAttachment("scores_vs_escs_00_09.csv").csv({typed: true}),
+  FileAttachment("scores_vs_escs_12_22.csv").csv({typed: true})
 ])
   .then(([data1, data2]) => [...data1, ...data2]);
 ```

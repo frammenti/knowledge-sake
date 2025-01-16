@@ -15,11 +15,11 @@ The project examines the impact of socio-cultural and economic inequalities on a
 
 
 <div class="grid-nav">
-  <a class="card" href="datasets/index">
+  <a class="card" href="datasets/secondary-education/index">
     <h2>Source datasets</h2>
     <p>Exploratory visualization and preprocessing of the original datasets.</p>
   </a>
-  <a class="card" href="mashups/index">
+  <a class="card" href="mashups/education-career-fulfillment-atlas">
     <h2>Mash-up datasets</h2>
     <p>All stages of data curation, from aims to outcomes.</p>
   </a>
