@@ -7,6 +7,7 @@ sidebar: false
 <div class="hero">
   <h1>Knowledge For Knowledge’s Sake</h1>
   <h2>What limits our opportunities for learning?</h2>
+  <button class="find-out-btn" data-scroll-to="#data-driven-insights-into-achieving-self-realization-in-education-and-work">Find Out !</button>
 </div>
 
 # Data-driven insights into achieving self-realization in education and work
@@ -36,7 +37,28 @@ The project examines the impact of socio-cultural and economic inequalities on a
     <h2>License</h2>
     <p>Description of the tools we used and the conditions for reusing our work.</p>
   </a>
+  <a class="card" href="documentation">
+    <h2>Documentation</h2>
+    <p>Overview of the datasets, including legal, ethical, and technical aspects, as well as their sustainability.</p>
+  </a>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-scroll-to]').forEach(button => {
+      button.addEventListener('click', (event) => {
+        const targetSelector = button.getAttribute('data-scroll-to');
+        const targetElement = document.querySelector(targetSelector);
+        if (targetElement) {
+          // Scroll to the target element
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          // Update the URL hash
+          window.history.pushState(null, '', targetSelector);
+        }
+      });
+    });
+  });
+</script>
 
 <style>
 
@@ -77,6 +99,22 @@ nav {
   font-weight: 500;
   line-height: 1.5;
   color: var(--theme-foreground-muted);
+}
+
+.find-out-btn {
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background-color: var(--theme-foreground-focus);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.find-out-btn:hover {
+  background-color: var(--theme-foreground);
 }
 
 @media (min-width: 640px) {

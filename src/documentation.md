@@ -15,7 +15,7 @@ In order to accomplish our research case, we collected data from different sourc
 
 ### Original Datasets
 
-The datasets used to cover the economic and political aspects affecting emigration include the following data from the respective sources:
+The datasets used to investigate how socio-cultural and economic inequalities influence individual access to knowledge include the following data from the respective sources:
 
 | Name | Source | Metadata | Privacy | Licence | Format |
 | -------- | ------- | ------- | ------- | ------- | ------- |
@@ -37,7 +37,6 @@ The datasets used to cover the economic and political aspects affecting emigrati
 
 #### GDPR
 
-Considering that the GDPR applies to both organisations which process personal data as part of the activities of one of their branches established in the EU and to organisations established outside the EU which offer goods/services (paid or for free) or monitor the behaviour of individuals in the EU, all the sources we used for collecting our dataset are concerned.
 * OECD: https://www.oecd.org/content/dam/oecd/en/about/programmes/edu/pisa/publications/technical-standards/PISA_2025_Technical_Standards.pdf, https://www.oecd.org/en/about/data-protection.html, https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0188
 * Cedefop: Cedefop follows the provisions of Regulation (EU) 2018/1725 https://www.cedefop.europa.eu/en/content/personal-data-protection, which is equivalent to GDPR (Regulation (EU) 2016/679) for EU instutions themselves
 * Eurostat: Similar to Cedefop, Eurostat follows the Regulation (EU) 2018/1725 as their privacy notice redirects to the [Privacy policy for websites managed by the European Commission](https://commission.europa.eu/privacy-policy-websites-managed-european-commission_en)
