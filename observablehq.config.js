@@ -10,45 +10,37 @@ export default {
   // lets you organize them into sections and have unlisted pages.
   pages: [
     {
-      name: "Sources",
-      path: "sources/index",
+      name: "Datasets",
       pages: [
-        {name: "Secondary Education", path: "sources/secondary-education"},
-        {name: "University", path: "sources/university"},
-        {name: "Employment", path: "sources/employment"},
-        {name: "Research", path: "sources/research"},
+        {name: "Secondary Education", path: "datasets/secondary-education/index"},
+        {name: "University", path: "datasets/university/index"},
+        {name: "Employment", path: "datasets/employment/index"},
+        {name: "Research", path: "datasets/research/index"},
       ]
     },
     {
-      name: "Syntheses",
-      path: "syntheses/index",
+      name: "Mashups",
       pages: [
-        {name: "Education and Career Fulfillment Atlas", path: "syntheses/education-career-fulfillment-atlas"},
-        {name: "Student Trajectories", path: "syntheses/student-trajectories"},
-        {name: "The STEM-Humanities Divide", path: "syntheses/stem-humanities-divide"}
+        {name: "Education and Career Fulfillment Atlas", path: "mashups/education-career-fulfillment-atlas"},
+        {name: "Student Trajectories", path: "mashups/student-trajectories"},
+        {name: "The STEM-Humanities Divide", path: "mashups/stem-humanities-divide"}
       ]
     },
     {
-      name: "Analysis",
-      path: "analysis",
+      name: "Documentation",
+      path: "documentation",
       pages: [
       ]
     },
     {
       name: "Metadata",
-      path: "metadata",
+      path: "metadata/index",
       pages: [
       ]
     },
     {
       name: "License",
       path: "license",
-      pages: [
-      ]
-    },
-    {
-      name: "Documentation",
-      path: "documentation",
       pages: [
       ]
     }

@@ -1,6 +1,7 @@
 .DS_Store
-/dist/
+dist/
 node_modules/
 yarn-error.log
 guide.md
 .Rproj.user
+src/.observablehq/cache/

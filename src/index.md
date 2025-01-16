@@ -15,30 +15,26 @@ The project examines the impact of socio-cultural and economic inequalities on a
 
 
 <div class="grid-nav">
-  <a class="card" href="sources/index">
+  <a class="card" href="datasets/index">
     <h2>Source datasets</h2>
     <p>Exploratory visualization and preprocessing of the original datasets.</p>
   </a>
-  <a class="card" href="syntheses/index">
+  <a class="card" href="mashups/index">
     <h2>Mash-up datasets</h2>
     <p>All stages of data curation, from aims to outcomes.</p>
   </a>
   <hr>
-  <a class="card" href="analysis">
-    <h2>Analysis</h2>
-    <p>Review of the legal, ethical, and quality aspects of the data, including their sustainability.</p>
+  <a class="card" href="documentation">
+    <h2>Documentation</h2>
+    <p>Overview of the datasets, including legal, ethical, and technical aspects, as well as their sustainability.</p>
   </a>
-  <a class="card" href="metadata">
+  <a class="card" href="metadata/index">
     <h2>Metadata</h2>
     <p>Development of a DCAT_AP schema to describe the datasets and publish them as Linked Open Data.</p>
   </a>
   <a class="card" href="license">
     <h2>License</h2>
     <p>Description of the tools we used and the conditions for reusing our work.</p>
-  </a>
-  <a class="card" href="documentation">
-    <h2>Documentation</h2>
-    <p>Overview of the datasets, including legal, ethical, and technical aspects, as well as their sustainability.</p>
   </a>
 </div>
 
