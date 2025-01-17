@@ -39,7 +39,7 @@ requestAnimationFrame(() => {
       </a>
     </div>
   </div>
-  <div class="section" markdown>
+  <div class="section fp-auto-height-responsive" markdown>
 
   <h1>Data-driven insights into achieving self-realization in education and work</h1>
 
@@ -106,6 +106,16 @@ requestAnimationFrame(() => {
 
 .section:first-child .fp-overflow {
   display: flex;
+}
+
+.section:nth-child(2) {
+  display: flex;
+  flex: column;
+  align-items: center;
+}
+
+.section:nth-child(2) .fp-overflow {
+  padding: 4rem 0;
 }
 
 .section:nth-child(3) {
