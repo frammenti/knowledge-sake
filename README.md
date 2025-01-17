@@ -22,7 +22,7 @@ You are free to:
 - Share, copy, and redistribute the datasets in any medium or format.
 - Adapt, remix, transform, and build upon the datasets for any purpose, even commercially, as long as you give appropriate credit to the creator.
 
-For more details, see the [LICENSE](./datasets/LICENSE) file in the `datasets/` directory or visit the [CC BY 4.0 License page](https://creativecommons.org/licenses/by/4.0/).
+For more details, see the [LICENSE](./src/datasets/LICENSE) file in the `datasets/` directory or visit the [CC BY 4.0 License page](https://creativecommons.org/licenses/by/4.0/).
 
 ### Attribution
 If you use the datasets, please provide the following attribution:
