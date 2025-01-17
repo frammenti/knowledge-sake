@@ -78,6 +78,7 @@ gc()
 iso_mapped <- countrycode(data$cnt, origin = "iso3c", destination = "country.name")
 title_mapped <- tools::toTitleCase(tolower(data$cnt))
 countries <- ifelse(!is.na(iso_mapped), iso_mapped, title_mapped)
+countries <- gsub("Czech Republic", "Czechia", countries)
 countries <- gsub("Slovak Republic", "Slovakia", countries)
 data$cnt <- countries
 

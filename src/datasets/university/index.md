@@ -2,7 +2,7 @@
 // const data = FileAttachment("data/ds1/").csv({typed:true})
 ```
 
-# University
+# University: Enrollment and graduation by faculty
 
 
 <div class="grid grid-cols-1">

@@ -12,6 +12,7 @@
     "@observablehq/framework": "^1.13.0",
     "d3-dsv": "^3.0.1",
     "d3-time-format": "^4.1.0",
+    "fullpage.js": "^4.0.31",
     "markdown-it-footnote": "^4.0.0"
   },
   "devDependencies": {
