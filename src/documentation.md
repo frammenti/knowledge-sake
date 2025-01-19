@@ -17,12 +17,13 @@ In order to accomplish our research case, we collected data from different sourc
 
 The datasets used to investigate how socio-cultural and economic inequalities influence individual access to knowledge include the following data from the respective sources:
 
-| Name | Source | Metadata | Privacy | Licence | Format |
-| -------- | ------- | ------- | ------- | ------- | ------- |
-| OECD PISA 2000-2022 Reports | [OECD](https://www.oecd.org/en/about/programmes/pisa/pisa-data.html) | [Provided](https://www.oecd.org/en/about/programmes/pisa/pisa-data.html#methodology) | [OECD Privacy Guidelines](https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0188) | OECD, CC BY 4.0 | .sav |
-| 2024 European Skills Index | [Cedefop](https://www.cedefop.europa.eu/en/projects/european-skills-index-esi) | | [Regulation (EU) 2018/1725](https://www.cedefop.europa.eu/en/content/personal-data-protection) | [CC BY 4.0](https://www.cedefop.europa.eu/en/news/cedefop-adopts-open-access-research-output-policy) | .xlsx |
-| GERD by sector of performance and fields of R&D | [Eurostat](https://ec.europa.eu/eurostat/databrowser/product/page/RD_E_GERDSC) | [Provided](https://ec.europa.eu/eurostat/cache/metadata/en/rd_esms.htm) | [Regulation (EU) 2018/1725](https://commission.europa.eu/privacy-policy-websites-managed-european-commission_en) | CC BY 4.0 | .tsv |
-| Distribution of male and female graduates in different fields of education, by education level and programme orientation | [Eurostat](https://ec.europa.eu/eurostat/databrowser/product/page/EDUC_UOE_GRAD10) | [Provided](https://ec.europa.eu/eurostat/cache/metadata/en/educ_uoe_enr_esms.htm) | [Regulation (EU) 2018/1725](https://commission.europa.eu/privacy-policy-websites-managed-european-commission_en) | CC BY 4.0 | .tsv |
+| Name | Source | URI | Metadata | Privacy | Licence | Format |
+| -------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| OECD PISA 2000-2022 Reports | [OECD](https://www.oecd.org/en/about/programmes/pisa/pisa-data.html) | | [Provided](https://www.oecd.org/en/about/programmes/pisa/pisa-data.html#methodology) | [OECD Privacy Guidelines](https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0188) | OECD, CC BY 4.0 | .sav |
+| 2024 European Skills Index | [Cedefop](https://www.cedefop.europa.eu/en/projects/european-skills-index-esi) | | | [Regulation (EU) 2018/1725](https://www.cedefop.europa.eu/en/content/personal-data-protection) | [CC BY 4.0](https://www.cedefop.europa.eu/en/news/cedefop-adopts-open-access-research-output-policy) | .xlsx |
+| GERD by sector of performance and fields of R&D | [Eurostat](https://ec.europa.eu/eurostat/databrowser/product/page/RD_E_GERDSC) | | [Provided](https://ec.europa.eu/eurostat/cache/metadata/en/rd_esms.htm) | [Regulation (EU) 2018/1725](https://commission.europa.eu/privacy-policy-websites-managed-european-commission_en) | CC BY 4.0 | .tsv |
+| World Bank Development Indicators | [World Bank Group](https://datacatalog.worldbank.org/search/dataset/0037712/World-Development-Indicators) | [WDI_EXCEL](https://datacatalogfiles.worldbank.org/ddh-published/0037712/DR0045574/WDI_EXCEL_2024_12_16.zip?versionId=2025-01-15T18:08:40.1137708Z) | Provided |  | CC BY 4.0 | .csv .xlsx |
+| New entrants by education level, programme orientation, sex and field of education | [Eurostat](https://ec.europa.eu/eurostat/web/products-datasets/-/educ_uoe_ent02) | | [Provided](https://ec.europa.eu/eurostat/cache/metadata/en/rd_esms.htm) | [Regulation (EU) 2018/1725](https://commission.europa.eu/privacy-policy-websites-managed-european-commission_en) | CC BY 4.0 | .tsv .csv |
 
 
 ### Mashed-up Dataset
