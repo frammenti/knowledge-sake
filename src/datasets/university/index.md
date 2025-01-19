@@ -116,7 +116,7 @@ function chart(width) {
   };
 
   function change(data) {
-    console.log(data);
+
     /* ------- PIE SLICES -------*/
 
     const pieData = pie(data);
@@ -404,7 +404,7 @@ function formatValue(value) {
     ${selectYearDatalist()}
   </div>
   <div class="card">
-    <h2>Distribution of new bachelor students in ${plotData[0].Country === "European Union" ? "the " : ""}${plotData[0].Country}, ${selectYear.value}</h2>
+    <h2>Distribution of new bachelor students in ${plotData[0].Country === "European Union" ? "the " : ""}${plotData[0].Country}, ${selectedYear}</h2>
     ${resize((width) => chart(width))}
   </div>
 </div>
