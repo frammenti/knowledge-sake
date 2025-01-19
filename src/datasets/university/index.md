@@ -23,7 +23,7 @@ const selectFields = Inputs.checkbox(fields, {label: "Compare fields:", multiple
 const selectedFields = Generators.input(selectFields);
 ```
 ```js
-const selectMetric = Inputs.radio(["Weighted Enrollment Growth Rate (%)", "Enrollment Growth Rate (%)", "Absolute Enrollments"], {label: "Metric:", value: "Weighted Enrollment Growth Rate (%)"});
+const selectMetric = Inputs.radio(["Enrollment Count", "Weighted Enrollment Growth Rate (%)", "Enrollment Growth Rate (%)"], {label: "Metric:", value: "Enrollment Count"});
 const metric = Generators.input(selectMetric);
 ```
 ```js
@@ -261,6 +261,50 @@ function chart(width) {
       );
 
 
+     /* ------- TOTAL GROWTH PERCENTAGE -------*/
+
+      if (pieData && pieData.length > 0) {
+        const totalGrowthRate = data[0]['Total Growth Rate (%)'];
+
+        const totalGrowth = g
+          .selectAll(".total-growth")
+          .data(totalGrowthRate != null ? [1] : []);
+
+        totalGrowth.join(
+          enter => enter.append("text")
+            .attr("class", "total-growth")
+            .attr("dy", "0")
+            .style("font-family", "var(--sans-serif)")
+            .style("text-anchor", "middle")
+            .style("fill", "currentColor")
+            .call(text => {
+            text.append("tspan")
+              .attr("x", 0)
+              .attr("dy", "-0.6em")
+              .style("font-size", "10px")
+              .style("font-weight", 500)
+              .text("Total Growth Rate");
+            text.append("tspan")
+              .attr("x", 0)
+              .attr("dy", "1.2em")
+              .style("font-size", "18px")
+              .style("font-weight", 500)
+              .text(`${formatValue(totalGrowthRate)}`);
+          }),
+        update => update.call(text => {
+          text.select("tspan:first-child")
+            .text("Total Growth Rate");
+
+          text.select("tspan:last-child")
+            .text(`${formatValue(totalGrowthRate)}`);
+        }),
+        exit => exit.remove()
+      );
+    } else {
+      g.selectAll(".total-growth").remove();
+    }
+
+
     /* ------- SLICE TO TEXT POLYLINES -------*/
 
     const polyline = g
@@ -307,7 +351,7 @@ function chart(width) {
 ```
 ```js
 const fillColors = {
-  "Absolute Enrollments": (d) => color(d["Field (ISCED-F 2013)"]),
+  "Enrollment Count": (d) => color(d["Field (ISCED-F 2013)"]),
   default: "#1a9641"
 };
 ```
@@ -330,7 +374,7 @@ function formatValue(value) {
 
 <div class="grid grid-cols-2" style="grid-auto-rows: auto;">
   <div class="card grid-rowspan-3">
-    <h2>Undergraduate ${metric} in ${plotData[0].Country === "European Union" ? "the " : ""}${plotData[0].Country}</h2>
+    <h2>Undergraduate ${metric} in ${plotData[0].Country === "European Union" ? "the " : ""}${plotData[0].Country}, ${xMin}-${xMax}</h2>
     ${
     resize((width) => Plot.plot({
     width,
@@ -360,7 +404,7 @@ function formatValue(value) {
     ${selectYearDatalist()}
   </div>
   <div class="card">
-    <h2>Distribution of Undergraduate Enrollment in ${plotData[0].Country === "European Union" ? "the " : ""}${plotData[0].Country} in ${selectYear.value}</h2>
+    <h2>Distribution of new bachelor students in ${plotData[0].Country === "European Union" ? "the " : ""}${plotData[0].Country}, ${selectYear.value}</h2>
     ${resize((width) => chart(width))}
   </div>
 </div>
