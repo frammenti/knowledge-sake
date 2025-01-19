@@ -22,12 +22,6 @@ html {
   margin-top: 0px;
 }
 
-@media (min-width: 640px) {
-  #observablehq-footer {
-    padding-right: calc(192px + 1rem);
-  }
-}
-
 #observablehq-footer nav {
   align-self: center;
   width: 100%;

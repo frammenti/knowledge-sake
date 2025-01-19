@@ -1,3 +1,7 @@
+---
+toc: false
+---
+
 ```js
 // Load and join the files
 const data = Promise.all([
@@ -33,6 +37,9 @@ const checkboxes = selectCountry.querySelectorAll("input[name='input']");
 ```js
 // Colored country legend
 requestAnimationFrame(() => {
+  const range = selectYear.querySelector("input[type='range']");
+  range.setAttribute("list", "pisa-years");
+
   checkboxes.forEach((checkbox, index) => {
     checkbox.style.setProperty("--checkbox-color", color[index]);
     checkbox.addEventListener("change", updateCheckAllState)
