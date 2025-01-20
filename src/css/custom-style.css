@@ -58,3 +58,48 @@ a, a span {
 a:hover, a:hover span {
   text-decoration-color: inherit !important;
 }
+
+datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  margin: 0 5px;
+  font-family: system-ui;
+  font-size: 10px;
+}
+
+datalist option {
+  rotate: -90deg;
+  transform: translate(4px, 3px);
+}
+
+input[type="number"] {
+    display: none;
+}
+
+input[type="range"]:input {
+    scroll-behavior: auto;
+}
+
+.card > form {
+  margin: 0.5rem 0 !important;
+}
+
+.card h2 {
+  margin: 1rem 0;
+}
+
+.card label {
+  font: 13px/1.2 var(--sans-serif);
+}
+
+.inputs-3a86ea select{
+  width: inherit !important;
+  max-width: 40em !important;
+}
+
+
+form div label {
+  font-family: system-ui !important;
+}

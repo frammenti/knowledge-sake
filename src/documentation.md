@@ -1,5 +1,5 @@
 # Documentation
-
+<span></span>
 ## Introduction
 
 In this page you can find all the documentation about the project Knowledge for Knowledge's Sake. The aim of the project is to investigate how socio-cultural and economic inequalities influence individual access to knowledge and shape avenues for personal growth in STEM and Humanities fields. 

@@ -1,1 +1,7 @@
 open
+*.csv
+*.Rproj
+.Rproj.user
+.Rhistory
+PISA/
+world_bank_development_indicators/

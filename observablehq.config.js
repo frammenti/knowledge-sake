@@ -12,18 +12,18 @@ export default {
     {
       name: "Datasets",
       pages: [
-        {name: "Secondary Education", path: "datasets/secondary-education/index"},
-        {name: "University", path: "datasets/university/index"},
-        {name: "Employment", path: "datasets/employment/index"},
-        {name: "Research", path: "datasets/research/index"},
+        {name: "Secondary Education", path: "datasets/secondary-education"},
+        {name: "University", path: "datasets/university"},
+        {name: "Employment", path: "datasets/employment"},
+        {name: "Research", path: "datasets/research"},
       ]
     },
     {
       name: "Mashups",
       pages: [
-        {name: "Education and Career Fulfillment Atlas", path: "mashups/education-career-fulfillment-atlas"},
-        {name: "Student Trajectories", path: "mashups/student-trajectories"},
-        {name: "The STEM-Humanities Divide", path: "mashups/stem-humanities-divide"}
+        {name: "Education and Career Fulfillment Atlas", path: "datasets/education-career-fulfillment-atlas"},
+        {name: "Student Trajectories", path: "datasets/student-trajectories"},
+        {name: "The STEM-Humanities Divide", path: "datasets/stem-humanities-divide"}
       ]
     },
     {
