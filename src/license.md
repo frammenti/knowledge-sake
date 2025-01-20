@@ -11,7 +11,7 @@ For more information, see the [LICENSE](https://github.com/frammenti/knowledge-s
 
 ## Datasets
 
-The datasets located in the [`datasets/source/`](https://github.com/frammenti/knowledge-sake/blob/main/src/datasets/source/) and [`datsets/mashup/`](https://github.com/frammenti/knowledge-sake/blob/main/src/datasets/mashup/) directories are licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license.
+The datasets located in the [`datasets/source/`](https://github.com/frammenti/knowledge-sake/tree/main/src/datasets/source) and [`datsets/mashup/`](https://github.com/frammenti/knowledge-sake/tree/main/src/datasets/mashup) directories are licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license.
 
 You are free to:
 - Share, copy, and redistribute the datasets in any medium or format.
@@ -21,7 +21,7 @@ For more details, see the [LICENSE](https://github.com/frammenti/knowledge-sake/
 
 <div class="note" label="Note on GISCO Geographical Data" style="padding-bottom: 1.5rem;" markdown>
 
-GISCO geographical data of administrative units, found in the <span style="white-space: nowrap;">[`datasets/map/`](https://github.com/frammenti/knowledge-sake/blob/main/src/datasets/map/)</span> directory, are subject to additional terms. Specifically, these datasets may only be used for non-commercial purposes.
+GISCO geographical data of administrative units, found in the <span style="white-space: nowrap;">[`datasets/map/`](https://github.com/frammenti/knowledge-sake/tree/main/src/datasets/map)</span> directory, are subject to additional terms. Specifically, these datasets may only be used for non-commercial purposes.
 
 For more details, refer to the [GISCO licensing terms](https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units).
 

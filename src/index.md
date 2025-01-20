@@ -55,11 +55,11 @@ requestAnimationFrame(() => {
   </div>
   <div class="section fp-auto-height-responsive">
     <div class="grid-nav">
-      <a class="card" href="datasets/secondary-education/index">
+      <a class="card" href="datasets/secondary-education">
         <h2>Source datasets</h2>
         <p>Exploratory visualization and preprocessing of the original datasets.</p>
       </a>
-      <a class="card" href="mashups/education-career-fulfillment-atlas">
+      <a class="card" href="datasets/education-career-fulfillment-atlas">
         <h2>Mash-up datasets</h2>
         <p>All stages of data curation, from aims to outcomes.</p>
       </a>
