@@ -35,3 +35,8 @@ const circle = d3.geoCircle().center([14, 54]).radius(18)()
   </div>
   <div class="card"></div>
 </div>
+
+---
+### Map projection
+
+For the Europe map, we used the **Lambert azimuthal equal-area projection** to ensure accurate representation of area across all regions and fair treatment of all EU countries in our analysis. The European Environment Agency (EEA) recommends its usage for European mapping for statistical analysis and display.

@@ -40,9 +40,24 @@ requestAnimationFrame(() => {
   const range = selectYear.querySelector("input[type='range']");
   range.setAttribute("list", "pisa-years");
 
+  // Create and append the datalist
+  const dataList = document.createElement("datalist");
+  dataList.id = "pisa-years";
+  dataList.innerHTML = `
+    <option value="0" label="2000"></option>
+    <option value="1" label="2003"></option>
+    <option value="2" label="2006"></option>
+    <option value="3" label="2009"></option>
+    <option value="4" label="2012"></option>
+    <option value="5" label="2015"></option>
+    <option value="6" label="2018"></option>
+    <option value="7" label="2022"></option>
+  `;
+  range.insertAdjacentElement("afterend", dataList);
+
   checkboxes.forEach((checkbox, index) => {
     checkbox.style.setProperty("--checkbox-color", color[index]);
-    checkbox.addEventListener("change", updateCheckAllState)
+    checkbox.addEventListener("change", updateCheckAllState);
   });
 });
 ```
@@ -75,7 +90,7 @@ checkAll.addEventListener("change", () => {
 ```
 ```js
 // Input score selection
-const selectScore = Inputs.radio(["Math", "Reading"], {value: "Math Score", valueof: x => x + " Score"});
+const selectScore = Inputs.radio(["Math", "Reading"], {value: "Math Score", valueof: x => x + " Score", label: "Score:"});
 const facet = Generators.input(selectScore);
 ```
 ```js
@@ -86,6 +101,7 @@ const selectYear = Inputs.range([0, years.length - 1], {
   value: 0,
   format: x => years[x],
   width: "inherit",
+  label: "Year:"
 });
 const yearIndex = Generators.input(selectYear);
 ```
@@ -94,7 +110,7 @@ const selectedYear = years[yearIndex];
 ``` 
 ```js
 // Input country selection
-const selectCountry = Inputs.checkbox(countries, {value: countries});
+const selectCountry = Inputs.checkbox(countries, {value: countries, label: "Countries:"});
 const selectedCountries = Generators.input(selectCountry);
 ```
 ```js
@@ -124,36 +140,35 @@ countries.forEach((country, index) => {
 // Filter the dataset by countries
 const plotData = selectedCountries.flatMap(country => filteredYearData.get(country) || []);
 ```
+```js
+import fullpage from "fullpage.js";
+
+requestAnimationFrame(() => {
+  new fullpage('#fullpage', {
+    anchors: ['viz-tit', 'viz'],
+    autoScrolling: true,
+    navigation: true,
+    navigationPosition: 'right',
+    controlArrows: false,
+    verticalCentered: true,
+    animateAnchor: false,
+  });
+
+});
+```
 
 # Secondary Education: OECD PISA Questionnaires
 
 ## Influence of socio-cultural-economic factors in 15-year-olds' aptitude for math and reading
 
-...
 
 ### Distribution of PISA Scores vs. ESCS Index
 
-<div class="grid grid-cols-2-3">
-  <div class="card grid-rowspan-2" id="card-pisa-score">
-    <label>Score</label>
-    ${selectScore}
-  </div>
-  <div class="card grid-colspan-2 grid-rowspan-2" id="card-pisa-years">
-    <label>Year</label>
-    ${selectYear}
-    <datalist id="pisa-years">
-      <option value="0" label="2000"></option>
-      <option value="1" label="2003"></option>
-      <option value="2" label="2006"></option>
-      <option value="3" label="2009"></option>
-      <option value="4" label="2012"></option>
-      <option value="5" label="2015"></option>
-      <option value="6" label="2018"></option>
-      <option value="7" label="2022"></option>
-    </datalist>
-  </div>
-  <div class="card grid-wide" id="card-pisa1">
+<div class="card">
     <h2>Correlation between PISA ${facet}s and ESCS Index in ${selectedYear}</h2>
+    <div id="options">
+      ${selectScore}${selectYear}
+    </div>
     ${selectCountry}
     <label>
       <input type="checkbox" id="check-all" checked="">
@@ -164,7 +179,8 @@ const plotData = selectedCountries.flatMap(country => filteredYearData.get(count
       width,
       height: 500,
       grid: true,
-      x: {domain: [xMin, xMax]},
+      r: {range: [0, 25]},
+      x: {domain: [xMin, xMax], axis: null, grid: true},
       y: {domain: [yMin, yMax]},
       color: {domain: countries, range: countries.map(x => colorScale.get(x))},
       marks: [
@@ -173,43 +189,64 @@ const plotData = selectedCountries.flatMap(country => filteredYearData.get(count
         Plot.dot(plotData, {x: facet, y: "ESCS Index", fill: d => colorScale.get(d.Country), r: 1.5}),
         Plot.linearRegressionY(plotData, {x: facet, y: "ESCS Index"}),
         Plot.dot(plotData, Plot.pointer({x: facet, y: "ESCS Index", r: 8})),
-        Plot.tip(plotData, Plot.pointer({x: {value: d => Math.floor(d[facet])}, y: "ESCS Index", fill: "Country"}))
+        Plot.tip(plotData, Plot.pointer({x: {value: d => Math.floor(d[facet])}, y: "ESCS Index", fill: "Country"})),
+        Plot.dot(plotData, Plot.binX({ r: "count" }, { x: facet , y: -8, tip: true, thresholds: d3.range(xMin, xMax, 20)})),
+        Plot.dot(plotData, Plot.binY({ r: "count" }, { x: 1000, y: "ESCS Index", tip: true, thresholds: d3.range(Math.floor(yMin), Math.ceil(yMax), 0.25)})),
       ],
   }))
   }
-  ${
-  resize((width) => Plot.plot({
-  width,
-  height: 100,
-  y: { grid: true, label: "Frequency" },
-  x: { domain: [xMin, xMax], axis: null },
+  © Programme for International Student Assessment (PISA) Organisation for Economic Co-operation and Development (OECD), Paris
+</div>
+    <div class="card">
+    ${
+    resize((width) => Plot.plot({
+  grid: true,
+  round: true,
+  r: {
+    range: [0, 10]
+  },
   marks: [
-    Plot.areaY(
-      plotData, 
-      Plot.binX({ y: "count" }, { x: facet, fillOpacity: 0.2 })
-    ),
-    Plot.lineY(
-      plotData, 
-      Plot.binX({ y: "count" }, { x: facet })
-    ),
-    Plot.ruleY([0])
+    Plot.dot(plotData, Plot.bin({r: "count"}, {x: facet, y: "ESCS Index", tip: true, stroke: d => colorScale.get(d.Country)}))
   ]
   }))
-  }</div>
-</div>
-
-
-
+  }
+    </div>
+    <div class="card">
+    ${
+    resize((width) => Plot.plot({
+  marginLeft: 100,
+  padding: 0,
+  x: {
+    round: true,
+    grid: true
+  },
+  fy: {
+    label: null,
+    domain: d3.groupSort(filteredData, g => d3.median(g, d => d[facet]), d => d.Country)
+  },
+  color: {
+    scheme: "YlGnBu"
+  },
+  facet: {
+    data: filteredData,
+    marginLeft: 100,
+    y: "Country"
+  },
+  marks: [
+    Plot.barX(filteredData, Plot.binX({fill: "proportion-facet"}, {x: facet, inset: 0.5}))
+  ]
+  }))
+  }
+    </div>
 
 ---
+
+https://www.oecd.org/en/about/programmes/pisa/how-to-prepare-and-analyse-the-pisa-database.html
+
+
 <style>
 
-#card-pisa-score form {
-  flex: 1;
-  align-content: center;
-}
-
-#card-pisa1 input[name="input"] {
+.card input[name="input"][type="checkbox"] {
   appearance: none;
   width: 15px;
   height: 15px;
@@ -222,31 +259,90 @@ const plotData = selectedCountries.flatMap(country => filteredYearData.get(count
   border-color: var(--checkbox-color, gray);
 }
 
-#card-pisa1 input[name="input"]:checked {
+.card input[name="input"][type="checkbox"]:checked {
   background-color: var(--checkbox-color, gray);
 }
 
-#card-pisa1 input[disabled] {
+.card input[disabled] {
   background-color: var(--theme-foreground-fainter) !important;
   border-color: var(--theme-foreground-faint) !important;
 }
 
-#card-pisa1 form, #card-pisa1 label {
+#options {
+  display: flex;
+  flex-flow: nowrap;
+}
+
+#options form:nth-child(2) .inputs-3a86ea-input {
+  flex: 1 1;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+.card input[type="range"] {
+  margin-right: 6.5px !important;
+}
+
+datalist {
+  width: 100%;
+}
+
+.inputs-3a86ea-checkbox {
+  width: auto;
+  max-width: 100% !important;
+}
+
+.inputs-3a86ea-checkbox > div label, .card > label {
   max-width: inherit !important;
   font-family: system-ui, sans-serif;
-  font-size: 10px;
   margin-bottom: 0px;
 }
 
-#card-pisa1 form div {
+.card > form div {
   width: 100%;
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(3, 1fr);
   align-items: center;
   justify-items: left;
-  margin-top: 5px;
 }
+
+@container (max-width: 950px) {
+  .inputs-3a86ea-checkbox > div label, .card > label {
+    font-size: 10px;
+  }
+}
+
+@container (max-width: 740px) {
+
+  .card > form div {
+    grid-template-rows: repeat(9, 1fr) !important;
+  }
+
+  #options {
+    flex-flow: column;
+  }
+
+  form {
+    margin: 0.1rem 0 !important;
+  }
+}
+
+@container (min-width: 740px) {
+  .card > label {
+    margin-left: 126.5px;
+  }
+}
+
+  #options form:nth-child(2) {
+    width: 100%;
+  }
+
+.card > form {
+  margin: 0 !important;
+}
+
 
 #check-all {
   margin-top: 2px;
@@ -260,31 +356,5 @@ const plotData = selectedCountries.flatMap(country => filteredYearData.get(count
   display: inline-block;
 }
 
-@media (max-width: 640px) {
-  #card-pisa1 form div {
-    grid-template-rows: repeat(9, 1fr) !important;
-  }
-}
-
-.grid-cols-2-3 {
-  grid-template-rows: auto auto auto auto;
-}
-
-@container (min-width: 560px) {
-  .grid-cols-2-3 {
-    grid-template-columns: 1fr 3fr;
-    grid-auto-flow: column;
-  }
-
-  .grid-cols-2-3 .grid-colspan-2 {
-    grid-column: span 2;
-  }
-
-.grid-wide {
-  grid-column: 1 / 4;
-  grid-row: 3;
-  height: auto;
-  }
-}
 
 </style>
