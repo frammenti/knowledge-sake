@@ -27,33 +27,13 @@ The datasets used to investigate how socio-cultural and economic inequalities in
 
 ### Mashed-up Dataset
 
-In order to manage the mash-up of different datasets, with different licenses we followed the Guidelines for Open Data provided by the EU. In accordance with these guidelines, we pursued the objective to make our research data findable, accessible, interoperable and re-usable (FAIR).
+To effectively manage the integration of multiple datasets with varying licensing conditions, we strictly adhered to the **EU Open Data Guidelines**, ensuring legal, ethical, and technical compliance. Following these guidelines, we aimed to make our research data **Findable, Accessible, Interoperable, and Reusable (FAIR)** through a structured approach to **selection, curation, and publication**.
 
-**Findable**: the first step in (re)using data is to find them. Metadata and data should be easy to find for both humans and computers. Machine-readable metadata are essential for automatic discovery of datasets and services, so this is an essential component of the FAIRification process.
-* F1. (Meta)data are assigned a globally unique and persistent identifier: both the data we retrieved in the original datasets, the mashed up data and the metadata we created according to the DCAT-AP are compliant with this point, presenting URI.
-* F2. Data are described with rich metadata (defined by R1 below): we associated a rich amount of metadata compliant with the DCAT-AP specification, including not only all the mandatory classes with their respective mandatory properties but also some recommended and optional properties that were useful for our data.
-* F3. Metadata clearly and explicitly include the identifier of the data they describe: for each dataset that is part of a catalogue and for our own dataset we associated to the metadata a unique identifier of the data described by means of the DCAT-AP optional property for datasets dct:identifier.
-* F4. (Meta)data are registered or indexed in a searchable resource: All the data we used are identified by an URL that allows to access the source where they are registered. For the creation of the metadata associated with our data we used the DCAT-AP specification, whose aim is to enable a cross-data portal search for data sets and make public sector data better searchable across borders and sectors. Therefore, we can state that our (meta)data are registered in a searchable infrastructure.
+Each dataset was meticulously evaluated for **provenance, licensing, quality, and accuracy**, ensuring freedom from **cognitive biases** and full legal validity. All of the datasets used were already anonymized so we didn't have to to apply privacy-preserving techniques in order to mitigate re-identification risks. To enhance interoperability, we structured datasets according to **Linked Open Data (LOD)** principles, incorporating **DCAT_AP metadata, RDF assertions**, and released them under an open license.
 
-**Accessible**: once the user finds the required data, she/he needs to know how can they be accessed, possibly including authentication and authorisation.
-* A1. (Meta)data are retrievable by their identifier using a standardised communications protocol: All the data we collected and mashed up and the relative metadata are retrievable through the HTTP or its extension HTTPS. Moreover, we provided also an explicit and clear contact protocol in the metadata by means of the names and emails of the data and metadata providers.
-* A1.1. The protocol is open, free, and universally implementable: HTTP and HTTPS are compliant with these characteristics.
-* A1.2 The protocol allows for an authentication and authorisation procedure, where necessary: The HTTP and HTTPS provide for authentication of the accessed website.
-* A2. Metadata are accessible, even when the data are no longer available: Metadata will remain accessible from the homepage of the website we created about the project.
+Ethical considerations were a key focus, with proactive measures taken to eliminate **discrimination, cognitive bias, and unintended prejudices** in the dataset selection and processing stages. Additionally, to maximize transparency and accessibility, results were visualized in a human-readable format and published on a one-page website.
 
-**Interoperable**: the data usually need to be integrated with other data. In addition, the data need to interoperate with applications or workflows for analysis, storage, and processing.
-* I1. (Meta)data use a formal, accessible, shared, and broadly applicable language for knowledge representation: we used JSON for the representation of the mashed up data and RDF with the XML syntax to describe and structure the metadata.
-* I2. (Meta)data use vocabularies that follow FAIR principles: the annotation format we used allow to use machine-readable terms from any controlled vocabulary. We used the ISO standard vocabulary to represent nations, the Linked Open Data vocabulary specification called DCAT-AP. These vocabularies are documented and resolvable using globally unique and persistent identifiers.
-* I3. (Meta)data include qualified references to other (meta)data: JSON and the RDF schema account for the data exchange and cross reference among metadata respectively.
-
-**Reusable**: the ultimate goal of FAIR is to optimise the reuse of data. To achieve this, metadata and data should be well-described so that they can be replicated and/or combined in different settings.
-* R1. Meta(data) are richly described with a plurality of accurate and relevant attributes: our data and metadata are described through a rich and vary series of labels including the date of collection and modification of the data, the licence, the publisher, the creator, their content.
-* R1.1. (Meta)data are released with a clear and accessible data usage license: all data we used were released with the specification of the usage license except for those from the UNHCR and UCDP. License in specified for the dataset and respective metadata we created (Creative Common License CC BY 4.0).
-* R1.2. (Meta)data are associated with detailed provenance: our project includes information about the provenance of data in a machine-readable format in the metadata codification. The website presents also a description of the workflow that led to your data.
-* R1.3. (Meta)data meet domain-relevant community standards: we used the ISO standard for geographic information.
-The principles mentioned above include three types of entities: data, metadata and infrastructure. Given the analysis, we can state that our research data are almost 100% compliant with the FAIR principles, with the few exceptions due to the lack of license specification.
-
-Check out the [output.xml](link) file we created out of the mash-up.
+As such you can check out the [output.xml](link) file we created out of the mash-up.
 
 ## Quality Analysis
 
