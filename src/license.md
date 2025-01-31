@@ -46,32 +46,21 @@ We would like to thank the creators of these tools, which were instrumental to t
     - fullPage ([GPL-v3](https://github.com/alvarotrigo/fullPage.js?tab=readme-ov-file#license))
 
 - R libraries:
-    - EDSurvey[^1] ([GPL-v2](https://cran.r-project.org/web/licenses/GPL-2))
-    - dplyr[^2] ([MIT](https://cran.r-project.org/web/licenses/MIT))
-    - sas7bdat[^3] ([GPL-v3](https://cran.r-project.org/web/licenses/GPL-3))
-    - countrycode[^4] ([GPL-v3](https://github.com/vincentarelbundock/countrycode/blob/main/LICENSE))
+    - Rrepest[^1] ([MIT](https://cran.r-project.org/web/licenses/MIT))
+    - haven[^2] ([MIT](https://cran.r-project.org/web/licenses/MIT))
 
 - JavaScript libraries:
     - d3 ([ISC](https://github.com/d3/d3/blob/main/LICENSE))
     - Observable Plot ([ISC](https://github.com/observablehq/plot/blob/main/LICENSE))
     - topojson ([BSD-3-Clause](https://github.com/topojson/topojson/blob/master/LICENSE.md))
 
-- Python libraries:
-    - Pandas ([BSD 3-Clause](https://github.com/pandas-dev/pandas/blob/main/LICENSE))
-    - requests ([Apache License 2.0](https://github.com/psf/requests/blob/main/LICENSE))
-
 - RDF Diagram ([MIT](https://gitlab.com/infai/rdf-diagram-framework/-/blob/main/LICENSE))
 - mapshaper ([MPL 2.0](https://github.com/mbloch/mapshaper/blob/master/LICENSE))
 
 
-[^1]: Bailey P, Emad A, Huo H, Lee M, Liao Y, Lishinski A, Nguyen T, Xie Q, Yu J, Zhang T, Buehler E, Lee S, Webb B, Fink T (2024). _EdSurvey: Analysis of NCES Education Survey and Assessment Data_. R package version 4.0.7, <https://CRAN.R-project.org/package=EdSurvey>.
+[^1]: Ilizaliturri R., Avvisati F., Keslair F. (2023). _Rrepest: An Analyzer of International Large Scale Assessments in Education_. R package version 1.3.0, <https://doi.org/10.32614/CRAN.package.Rrepest>.
 
-[^2]: Wickham H, François R, Henry L, Müller K, Vaughan D (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.4, <https://CRAN.R-project.org/package=dplyr>.
-
-[^3]: Shotwell M (2024). _sas7bdat: sas7bdat Reverse Engineering Documentation_. R package version 0.8, <https://CRAN.R-project.org/package=sas7bdat>.
-
-[^4]: Arel-Bundock V, Enevoldsen N, Yetman C (2018). “countrycode: An R package to convert country names and country codes.” _Journal of Open Source Software_, *3*(28), 848. <https://doi.org/10.21105/joss.00848>.
-
+[^2]: Wickham H., Miller E., Smith D. (2023). _haven: Import and Export 'SPSS', 'Stata' and 'SAS' Files_. R package version 2.5.4, <https://doi.org/10.32614/CRAN.package.haven>.
 
 <style>
     ul p {

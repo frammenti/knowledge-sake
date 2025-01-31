@@ -2,17 +2,34 @@
 @import url("theme-cotton,near-midnight.css");
 
 :root {
-  --theme-foreground-focus: #339966;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-  --theme-background-a: #ffffff;
+    --theme-foreground-focus: hsl(150 50% 40%);
+    --theme-background: hsl(60 9.1% 97.8%);
+    --theme-background-alt: hsl(0 0% 100%);
+    --theme-background-tra1: hsla(0 0% 100% / 0.1);
+    --theme-background-tra2: hsla(0 0% 100% / 0.4);
+    --theme-foreground-focus-alt: hsl(150 30% 85%);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-foreground-focus: hsl(150 50% 55%);
+    --theme-foreground-focus-alt: hsl(150 25% 10%);
+    --theme-background-tra1: hsla(0 0% 0% / 0.1);
+    --theme-background-tra2: hsla(0 0% 0% / 0.2);
   }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  text-rendering: optimizeLegibility;
 }
 
 #observablehq-footer {
@@ -30,10 +47,6 @@ html {
 #observablehq-sidebar {
   --observablehq-sidebar-padding-left: calc(max(0rem, (100vw - var(--observablehq-max-width)) / 3));
   width: calc(272px + calc(var(--observablehq-sidebar-padding-left) * 1.5));
-}
-
-.grid {
-  margin-top: 2rem;
 }
 
 .card {
@@ -65,8 +78,12 @@ datalist {
   justify-content: space-between;
   writing-mode: vertical-lr;
   margin: 0 5px;
+  padding-right: 0.2rem;
   font-family: system-ui;
   font-size: 10px;
+  width: inherit;
+  max-width: 600px;
+  box-sizing: border-box;
 }
 
 datalist option {
@@ -78,16 +95,12 @@ input[type="number"] {
     display: none;
 }
 
+input[type="range"] {
+    max-width: 600px;
+}
+
 input[type="range"]:input {
     scroll-behavior: auto;
-}
-
-.card > form {
-  margin: 0.5rem 0 !important;
-}
-
-.card h2 {
-  margin: 1rem 0 0.5rem;
 }
 
 .card label {
@@ -102,4 +115,40 @@ input[type="range"]:input {
 
 form div label {
   font-family: system-ui !important;
+}
+
+.caption {
+  color: var(--theme-foreground-muted);
+  font: 11px/1.5 var(--sans-serif);
+}
+
+.caption > :not(:first-child)::before {
+  content: "•";
+  margin: 0.3em;
+}
+
+.card svg {
+  margin-top: 0 !important;
+}
+
+.card h2 {
+  line-height: 1.25;
+}
+
+h2:not(.card h2):not(h1 + h2):not(hr + h2) {
+  margin-top: 2rem;
+}
+
+.underlined {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+.underlined.math {
+  text-decoration-color: #4269d0;
+}
+
+.underlined.read {
+  text-decoration-color: #efb118;
 }

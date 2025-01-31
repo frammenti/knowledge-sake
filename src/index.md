@@ -39,7 +39,7 @@ requestAnimationFrame(() => {
       </a>
     </div>
   </div>
-  <div class="section fp-auto-height-responsive" markdown>
+  <div class="section fp-auto-height-responsive">
 
   <h1>Data-driven insights into achieving self-realization in education and work</h1>
 
@@ -63,7 +63,6 @@ requestAnimationFrame(() => {
         <h2>Mash-up datasets</h2>
         <p>All stages of data curation, from aims to outcomes.</p>
       </a>
-      <hr>
       <a class="card" href="documentation">
         <h2>Documentation</h2>
         <p>Overview of the datasets, including legal, ethical, and technical aspects, as well as their sustainability.</p>
@@ -89,6 +88,10 @@ requestAnimationFrame(() => {
 
 <style>
 
+html {
+  background: linear-gradient(in hsl longer hue, var(--theme-background) 7%, var(--theme-foreground-focus-alt));
+}
+
 #observablehq-header ~ #observablehq-main {
   margin-top: 0;
 }
@@ -110,8 +113,10 @@ requestAnimationFrame(() => {
 
 .section:nth-child(2) {
   display: flex;
-  flex: column;
-  align-items: center;
+  align-items: start;
+  justify-items: center;
+  justify-content: space-around;
+  flex-flow: column;
 }
 
 .section:nth-child(2) .fp-overflow {
@@ -141,13 +146,13 @@ nav {
 
 @property --grad1 {
   syntax: '<color>';
-  initial-value: var(--theme-foreground-focus);
+  initial-value: currentColor;
   inherits: false;
 }
 
 @property --grad2 {
   syntax: '<color>';
-  initial-value: currentColor;
+  initial-value: var(--theme-foreground-alt);
   inherits: false;
 }
 
@@ -158,18 +163,18 @@ nav {
   font-size: 13vw;
   font-weight: 900;
   line-height: 1;
-  background: linear-gradient(30deg, var(--grad1), var(--grad2));
+  background: radial-gradient(900px 150% ellipse at bottom in hsl longer hue, var(--grad1), var(--grad2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   transition: --grad1 1s, --grad2 1s;
-  --grad1: var(--theme-foreground-focus);
-  --grad2: var(--theme-foreground-alt);
+  --grad1: var(--theme-foreground-alt);
+  --grad2: var(--theme-background);
 }
 
 .hero h1:hover {
   --grad1: var(--theme-foreground-focus);
-  --grad2: var(--theme-foreground-focus);
+  --grad2: var(--theme-background);
 }
 
 stop {
@@ -196,7 +201,7 @@ svg:hover stop:nth-child(2) {
   text-decoration: none;
   color: currentColor !important;
   cursor: pointer;
-  transition: transform 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .scroll-arrow:hover {
@@ -219,9 +224,9 @@ svg:hover stop:nth-child(2) {
 
 @container (min-width: 900px) {
   .grid-nav {
-    gap: 70px;
+    gap: 20px;
     max-width: 800px;
-    max-height: 700px;
+    max-height: 400px;
   }
 
   .section:nth-child(3) .fp-overflow {
@@ -232,66 +237,48 @@ svg:hover stop:nth-child(2) {
 
 @container (min-width: 720px) {
   .grid-nav {
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 1fr auto 1fr;
-  }
-
-  .grid-nav hr {
-    grid-column: 1 / 7;
-  }
-
-  .grid-nav a:nth-child(1) {
-    grid-column: 2 / 4;
-  }
-
-  .grid-nav a:nth-child(2) {
-    grid-column: 4 / 6;
-  }
-
-  .grid-nav a:nth-child(4) {
-    grid-column: 1 / 3;
-  }
-
-  .grid-nav a:nth-child(5) {
-    grid-column: 3 / 5;
-  }
-
-  .grid-nav a:nth-child(6) {
-    grid-column: 5 / 7;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
   }
 }
 
-.grid-nav hr {
-  padding: 0;
-  margin: 0;
-}
 
 .grid-nav a {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--theme-foreground-fainter);
-  border-radius: 8px;
-  padding: 1.5rem 1.5rem 3rem;
+  border-radius: 12px;
+  padding: 24px;
   line-height: 1rem;
   text-decoration: none !important;
   align-items: start;
   margin: 0;
-  font: 17px/1.5 var(--serif);
-  color: var(--theme-foreground);
-  line-height: 1.5;
-  transition: color 0.3s ease, border-color 0.3s ease;
+  font: 16px/1.5 var(--sans-serif);
+  color: var(--theme-foreground-alt);
+  border-radius: 20px;
+  transition: all 0.3s ease, border-color 0.3s ease;
+  background-color: var(--theme-background-tra1);
+  backdrop-filter: blur(20px);
+  overflow-wrap: break-word;
 }
 
 .grid-nav a h2 {
-  font: 24px/1.5 var(--serif);
-  font-weight: 700;
-  line-height: 1.5;
+  font: 16px/24px var(--sans-serif);
+  font-weight: 600;
   transition: color 0.3s ease;
+}
+
+.grid-nav p {
+  padding-top: 8px;
+  line-height: 24px;
+  font-size: 14px;
+  margin: 0 !important;
 }
 
 .grid-nav a:hover {
   border-color: var(--theme-foreground-focus);
   text-decoration: none;
+  background-color: var(--theme-background-tra2);
 }
 
 .grid-nav a:hover h2 {
@@ -432,17 +419,23 @@ body:not(.fp-responsive) .fp-overflow{
 .fp-watermark {
   z-index: 9999999;
   position: relative;
-  bottom: 3.5rem;
-  color: var(--theme-foreground-fainter);
-  font-family: var(--sans-serif);
-  font-size: 14px;
-  background-color: white;
+  bottom: 3rem;
+  left: -20%;
+  color: var(--theme-foreground-alt);
+  font: 14px/1.25 var(--sans-serif);
+  background-color: var(--theme-background-tra2);
+  box-sizing: content-box;
+  backdrop-filter: blur(10px);
   width: 100%;
-  padding: 1.25rem 0 1.25rem;
+  padding: 1rem 5rem 1rem;
 }
 
 .fp-watermark a {
-  color: currentColor;
+  color: var(--theme-foreground-alt);
+}
+
+.fp-watermark a:hover {
+  color: var(--theme-foreground-focus);
 }
 
 
@@ -458,6 +451,11 @@ body:not(.fp-responsive) .fp-overflow{
 
 .fp-watermark {
   background-color: transparent;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+ text-align: end;
+
   }
 
 }

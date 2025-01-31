@@ -1,4 +1,3 @@
-library(tidyr)
 library(dplyr)
 library(stringr)
 library(countrycode)
@@ -15,7 +14,7 @@ for (year in years) {
   df <- df |>
     rename(country = cnt)
   
-  iso_mapped <- countrycode(df$country, origin = 'iso3c', destination = 'country.name')
+  iso_mapped <- suppressWarnings(countrycode(df$country, origin = 'iso3c', destination = 'country.name'))
   
   df$country <- ifelse(!is.na(iso_mapped), iso_mapped, df$country) |>
     tolower() |>
@@ -298,6 +297,9 @@ for (year in years) {
 
 res <- res |>
   rename_with(~ str_c('diff_', .), .cols = c(85, 95, 337, 357, 363, 369)) |>
-  rename_with(~ str_c('se_diff', str_sub(., 3)), .cols = c(86, 96, 338, 358, 364, 370))
+  rename_with(~ str_c('se_diff', str_sub(., 3)), .cols = c(86, 96, 338, 358, 364, 370)) |>
+  mutate(across(starts_with("mean_math") | starts_with("mean_read"), ~ replace(., . == 0, NA)))
+
+res[is.na(res)] <- "NaN"
 
 write.csv(res, '../datasets/source/D1_OECD_PISA.csv', row.names = FALSE)
