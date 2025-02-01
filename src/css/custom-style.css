@@ -1,26 +1,27 @@
 @import url("observablehq:default.css");
 @import url("theme-cotton,near-midnight.css");
 
-:root {
-}
-
 @media (prefers-color-scheme: light) {
   :root {
-    --theme-foreground-focus: hsl(150 50% 40%);
-    --theme-background: hsl(60 9.1% 97.8%);
-    --theme-background-alt: hsl(0 0% 100%);
-    --theme-background-tra1: hsla(0 0% 100% / 0.1);
-    --theme-background-tra2: hsla(0 0% 100% / 0.4);
-    --theme-foreground-focus-alt: hsl(150 30% 85%);
+    --theme-foreground-focus: hsl(150, 50%, 40%);
+    --theme-background: hsl(60, 9.1%, 97.8%);
+    --theme-background-alt: hsl(0, 0%, 100%);
+    --theme-background-tra1: hsla(0, 0%, 100%, 0.1);
+    --theme-background-tra2: hsla(0, 0%, 100%, 0.4);
+    --theme-foreground-focus-alt: color-mix(in oklab, var(--theme-foreground-focus) 65%, var(--theme-background));
+    --theme-title: color-mix(in oklab, var(--theme-foreground-alt) 50%, var(--theme-foreground-focus));
+    --theme-title-focus: color-mix(in hsl longer hue, var(--theme-background) 30%, var(--theme-foreground-alt));
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --theme-foreground-focus: hsl(150 50% 55%);
-    --theme-foreground-focus-alt: hsl(150 25% 10%);
-    --theme-background-tra1: hsla(0 0% 0% / 0.1);
-    --theme-background-tra2: hsla(0 0% 0% / 0.2);
+    --theme-foreground-focus: hsl(150, 50%, 60%);
+    --theme-foreground-focus-alt: color-mix(in oklab, var(--theme-foreground-focus), var(--theme-background));
+    --theme-background-tra1: hsla(0, 0%, 0%, 0.1);
+    --theme-background-tra2: hsla(0, 0%, 0%, 0.2);
+    --theme-title: color-mix(in oklab, var(--theme-foreground-alt) 40%, var(--theme-foreground-focus));
+    --theme-title-focus: color-mix(in hsl longer hue, var(--theme-background) 55%, var(--theme-foreground-focus));
   }
 }
 
@@ -46,7 +47,7 @@ body {
 
 #observablehq-sidebar {
   --observablehq-sidebar-padding-left: calc(max(0rem, (100vw - var(--observablehq-max-width)) / 3));
-  width: calc(272px + calc(var(--observablehq-sidebar-padding-left) * 1.5));
+  width: calc(272px + var(--observablehq-sidebar-padding-left) * 1.5);
 }
 
 .card {
@@ -91,27 +92,26 @@ datalist option {
   transform: translate(4px, 3px);
 }
 
-input[type="number"] {
-    display: none;
+input[type=number] {
+  display: none;
 }
 
-input[type="range"] {
-    max-width: 600px;
+input[type=range] {
+  max-width: 600px;
 }
 
-input[type="range"]:input {
-    scroll-behavior: auto;
+input[type=range]:input {
+  scroll-behavior: auto;
 }
 
 .card label {
   font: 13px/1.2 var(--sans-serif);
 }
 
-.inputs-3a86ea select{
+.inputs-3a86ea select {
   width: inherit !important;
   max-width: 40em !important;
 }
-
 
 form div label {
   font-family: system-ui !important;

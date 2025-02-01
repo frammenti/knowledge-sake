@@ -27,14 +27,7 @@ requestAnimationFrame(() => {
       <h2>What limits our opportunities for learning?</h2>
       <a href="#introduction" class="scroll-arrow">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="6 8 12 8">
-        <defs>
-          <linearGradient id="gradient">
-            <stop offset="0%" stop-color="currentColor" />
-            <stop offset="50%" stop-color="currentColor" />
-            <stop offset="100%" stop-color="currentColor" />
-          </linearGradient>
-        </defs>
-        <polyline points="6 9 12 15 18 9" stroke="url(#gradient)" />
+        <polyline points="6 9 12 15 18 9" />
       </svg>
       </a>
     </div>
@@ -88,15 +81,49 @@ requestAnimationFrame(() => {
 
 <style>
 
-html {
-  background: linear-gradient(in hsl longer hue, var(--theme-background) 7%, var(--theme-foreground-focus-alt));
+@property --gradTop {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 50%;
 }
 
-#observablehq-header ~ #observablehq-main {
-  margin-top: 0;
+@property --gradSize {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 2800px;
+}
+
+@property --gradBack {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 45%;
+}
+
+body {
+  max-width: unset;
+  background: linear-gradient(to bottom, var(--theme-background) var(--gradBack), transparent calc(var(--gradBack) + 10%)),
+              radial-gradient(ellipse var(--gradSize) 100% at left 50% top var(--gradTop) in hsl longer hue, var(--theme-background) 15%, var(--theme-foreground-focus-alt));
+  transition: --gradTop 1s, --gradSize 1s, --gradBack 1s;
 }
 
 #observablehq-center {
+  max-width: var(--observablehq-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.fp-viewing-introduction {
+  --gradTop: 30%;
+}
+
+.fp-viewing-navigation {
+  --gradTop: 0%;
+  --gradBack: 7%;
+  --gradSize: calc(max(1400px, 100%));
+}
+
+#observablehq-header ~ #observablehq-main {
   margin-top: 0;
 }
 
@@ -144,17 +171,12 @@ nav {
   justify-self: center;
 }
 
-@property --grad1 {
-  syntax: '<color>';
-  initial-value: currentColor;
+@property --gradTitle {
+  syntax: '<length>';
   inherits: false;
+  initial-value: 500px;
 }
 
-@property --grad2 {
-  syntax: '<color>';
-  initial-value: var(--theme-foreground-alt);
-  inherits: false;
-}
 
 .hero h1 {
   margin: 1rem 0;
@@ -163,26 +185,23 @@ nav {
   font-size: 13vw;
   font-weight: 900;
   line-height: 1;
-  background: radial-gradient(900px 150% ellipse at bottom in hsl longer hue, var(--grad1), var(--grad2));
+  background: radial-gradient(var(--gradTitle) var(--gradTitle) ellipse at left 50% bottom -200% in oklab, var(--theme-foreground-focus), var(--theme-title-focus));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: --grad1 1s, --grad2 1s;
-  --grad1: var(--theme-foreground-alt);
-  --grad2: var(--theme-background);
+  transition: --gradTitle ease 1s;
 }
 
-.hero h1:hover {
-  --grad1: var(--theme-foreground-focus);
-  --grad2: var(--theme-background);
+.hero h1:hover, .hero h1:focus {
+  --gradTitle: 1500px;
 }
 
 stop {
-    transition: 0.4s ease;
+    transition: all 3s ease;
 }
 
-svg:hover stop:nth-child(2) {
-    stop-color: var(--theme-foreground-focus);
+svg:hover stop:nth-child(1) {
+  offset: 100%;
 }
 
 .hero h2 {
@@ -199,9 +218,8 @@ svg:hover stop:nth-child(2) {
   width: 3rem;
   height: 3rem;
   text-decoration: none;
-  color: currentColor !important;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: transform 0.5s ease-in-out;
 }
 
 .scroll-arrow:hover {
@@ -212,8 +230,16 @@ svg:hover stop:nth-child(2) {
   width: 100%;
   height: 100%;
   fill: none;
+  stroke: var(--theme-foreground-muted);
   stroke-width: 0.3;
+  transition: stroke 0.3s ease-in-out;
 }
+
+.scroll-arrow:hover svg {
+  stroke: var(--theme-foreground-alt);
+}
+
+
 
 .grid-nav {
   grid-auto-rows: auto;
@@ -258,8 +284,9 @@ svg:hover stop:nth-child(2) {
   border-radius: 20px;
   transition: all 0.3s ease, border-color 0.3s ease;
   background-color: var(--theme-background-tra1);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .grid-nav a h2 {
@@ -350,7 +377,7 @@ svg:hover stop:nth-child(2) {
   height: 4px;
   width: 4px;
   border: 0;
-  background: #333;
+  background: var(--theme-foreground-alt);
   left: 50%;
   top: 50%;
   margin: -2px 0 0 -2px;
@@ -435,7 +462,7 @@ body:not(.fp-responsive) .fp-overflow{
 }
 
 .fp-watermark a:hover {
-  color: var(--theme-foreground-focus);
+  color: var(--theme-foreground);
 }
 
 
