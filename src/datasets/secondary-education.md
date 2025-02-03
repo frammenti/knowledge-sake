@@ -2,7 +2,7 @@
 toc: false
 ---
 ```js
-import {plotLevels, plotTrend, reshape, serialize } from "../components/pisaCharts.js";
+import {plotLevels, plotTrend, plotGrid, reshape, distribution, serialize } from "../components/pisaCharts.js";
 ```
 ```js
 const data = FileAttachment("source/D1_OECD_PISA.csv").csv({typed:true});
@@ -38,6 +38,7 @@ const selectYear = Inputs.range([0, years.length - 1], {
   value: 0,
   format: x => years[x],
   width: "inherit",
+  label: "Year:"
 });
 const yearIndex = Generators.input(selectYear);
 ```
@@ -45,31 +46,48 @@ const yearIndex = Generators.input(selectYear);
 const selectedYear = years[yearIndex];
 ``` 
 ```js
-requestAnimationFrame(() => {
-  const range = selectYear.querySelector("input[type='range']");
-  range.setAttribute("list", "pisa-years");
+function addDatalist() {
+  const ranges = document.querySelectorAll("input[type='range']");
 
-  const container = range.parentNode;
-  container.style.display = "flex";
-  container.style.flexFlow = "column";
-  container.style.alignItems = "flex-start";
-  container.style.paddingRight = "1rem";
-  container.style.boxSizing = "border-box";
+  ranges.forEach((range, index) => {
+    const dataListId = `pisa-years-${index}`;
 
-  const dataList = document.createElement("datalist");
-  dataList.id = "pisa-years";
-  dataList.innerHTML = `
-    <option value="0" label="2000"></option>
-    <option value="1" label="2003"></option>
-    <option value="2" label="2006"></option>
-    <option value="3" label="2009"></option>
-    <option value="4" label="2012"></option>
-    <option value="5" label="2015"></option>
-    <option value="6" label="2018"></option>
-    <option value="7" label="2022"></option>
-  `;
-  range.insertAdjacentElement("afterend", dataList);
+    if (!range.hasAttribute("list")) {
+      range.setAttribute("list", dataListId);
+    }
+
+    const container = range.parentNode;
+    container.style.display = "flex";
+    container.style.flexFlow = "column";
+    container.style.alignItems = "flex-start";
+    container.style.paddingRight = "1rem";
+    container.style.boxSizing = "border-box";
+
+    if (!document.getElementById(dataListId)) {
+      const dataList = document.createElement("datalist");
+      dataList.id = dataListId;
+      dataList.innerHTML = `
+        <option value="0" label="2000"></option>
+        <option value="1" label="2003"></option>
+        <option value="2" label="2006"></option>
+        <option value="3" label="2009"></option>
+        <option value="4" label="2012"></option>
+        <option value="5" label="2015"></option>
+        <option value="6" label="2018"></option>
+        <option value="7" label="2022"></option>
+      `;
+      range.insertAdjacentElement("afterend", dataList);
+    }
+  });
+}
+
+requestAnimationFrame(addDatalist);
+
+const observer = new MutationObserver(() => {
+  requestAnimationFrame(addDatalist);
 });
+
+observer.observe(selectYear, { childList: true, subtree: true });
 ```
 ```js
 const yearData = scores.get(selectedYear);
@@ -80,6 +98,8 @@ const isced = d3.group(reshape(data, "isced"), d => d.country);
 const books = d3.group(reshape(data, "books"), d => d.country);
 const computer = d3.group(reshape(data, "computer"), d => d.country);
 const lonely = d3.group(reshape(data, "lonely"), d => d.country);
+const escsDistribution = distribution(data, "escs");
+const iscedDistribution = distribution(data, "isced");
 const scores = d3.group(data.flatMap(d => [
   {
     year: d.year,
@@ -212,10 +232,10 @@ const barchart = resize((width) => {
 });
 ```
 ```js
-const trendChart =  resize((width) => plotTrend ({width, data, test, countries}));
+const trendChart =  resize((width) => plotTrend({width, data, test, countries}));
 ```
 ```js
-const mathEscsChart = resize((width) => plotLevels ({
+const mathEscsChart = resize((width) => plotLevels({
     width,
     country,
     data: escs,
@@ -225,7 +245,7 @@ const mathEscsChart = resize((width) => plotLevels ({
     subtitle: "Average scores on the PISA math literacy scale, by quartiles of the PISA index of economic, social, and cultural status (ESCS)."
   }));
 
-const readEscsChart = resize((width) => plotLevels ({
+const readEscsChart = resize((width) => plotLevels({
     width,
     country,
     data: escs,
@@ -235,7 +255,7 @@ const readEscsChart = resize((width) => plotLevels ({
     subtitle: "Average scores on the PISA reading literacy scale, by quartiles of the PISA index of economic, social, and cultural status (ESCS)."
   }));
 
-const mathIscedChart = resize((width) => plotLevels ({
+const mathIscedChart = resize((width) => plotLevels({
     width,
     country,
     data: isced,
@@ -245,7 +265,7 @@ const mathIscedChart = resize((width) => plotLevels ({
     subtitle: "Average scores on the PISA math literacy scale, by aggregated levels of the International Standard Classification of Education (ISCED)."
   }));
 
-const readIscedChart = resize((width) => plotLevels ({
+const readIscedChart = resize((width) => plotLevels({
     width,
     country,
     data: isced,
@@ -255,7 +275,7 @@ const readIscedChart = resize((width) => plotLevels ({
     subtitle: "Average scores on the PISA reading literacy scale, by aggregated levels of the International Standard Classification of Education (ISCED)."
   }));
 
-const mathBooksChart = resize((width) => plotLevels ({
+const mathBooksChart = resize((width) => plotLevels({
     width,
     country,
     data: books,
@@ -265,7 +285,7 @@ const mathBooksChart = resize((width) => plotLevels ({
     subtitle: "Average scores on the PISA math literacy scale, by the number of books in the student's home."
   }));
 
-const readBooksChart = resize((width) => plotLevels ({
+const readBooksChart = resize((width) => plotLevels({
     width,
     country,
     data: books,
@@ -275,7 +295,7 @@ const readBooksChart = resize((width) => plotLevels ({
     subtitle: "Average scores on the PISA reading literacy scale, by the number of books in the student's home."
   }));
 
-const mathComputerChart = resize((width) => plotLevels ({
+const mathComputerChart = resize((width) => plotLevels({
     width,
     country,
     data: computer,
@@ -285,7 +305,7 @@ const mathComputerChart = resize((width) => plotLevels ({
     subtitle: "Average scores on the PISA math literacy scale, by frequency of computer use."
   }));
 
-const readComputerChart = resize((width) => plotLevels ({
+const readComputerChart = resize((width) => plotLevels({
     width,
     country,
     data: computer,
@@ -294,6 +314,42 @@ const readComputerChart = resize((width) => plotLevels ({
     title: `Reading proficiency by computer use in ${["European Union (28)", "Netherlands", "United Kingdom"].includes(country) ? "the " : ""}${country}: ${yearMin}–${yearMax}`,
     subtitle: "Average scores on the PISA reading literacy scale, by frequency of computer use."
   }));
+
+const mathEscsDistributionChart = resize((width) => plotGrid({
+    width,
+    year: selectedYear,
+    country,
+    data: escsDistribution,
+    test: "Math",
+    group: "escs"
+ }));
+
+const readEscsDistributionChart = resize((width) => plotGrid({
+    width,
+    year: selectedYear,
+    country,
+    data: escsDistribution,
+    test: "Reading",
+    group: "escs"
+ }));
+
+const mathIscedDistributionChart = resize((width) => plotGrid({
+    width,
+    year: selectedYear,
+    country,
+    data: iscedDistribution,
+    test: "Math",
+    group: "isced" 
+ }));
+
+const readIscedDistributionChart = resize((width) => plotGrid({
+    width,
+    year: selectedYear,
+    country,
+    data: iscedDistribution,
+    test: "Reading",
+    group: "isced"
+ }));
 ```
 ```js
 function wrapsvg (svgnode, filename = 'chart.svg') {
@@ -345,19 +401,14 @@ A comparison of math and reading scores on the PISA literacy scale reveals some 
   - **Widening literacy gap:** Notably, the gap between the strongest and weakest readers has widened over time, surpassing the variation in math scores in almost all countries.
 
 
-<div id="averages-inputs">
-  ${selectTest}
-  ${selectYear}
-</div>
-<div class="grid grid-cols-3">
+${Inputs.form({test: selectTest, year: selectYear})}
+<div class="grid grid-cols-3" style="grid-auto-rows: auto auto auto;">
   <div class="card grid-colspan-2">
     ${wrapsvg(barchart, "Average math and reading scores.svg")}
   </div>
-</div>
-
-  ${Inputs.bind(Inputs.radio(["Math", "Reading"], {value: "Math", label: "Show:"}), selectTest)}
-
-<div class="grid grid-cols-3">
+  <div class="grid-colspan-2">
+    ${Inputs.bind(Inputs.radio(["Math", "Reading"], {value: "Math", label: "Show:"}), selectTest)}
+  </div>
   <div class="card grid-colspan-2">
     ${wrapsvg(trendChart, `Trend in ${test.toLowerCase()} scores.svg`)}
   </div>
@@ -377,12 +428,25 @@ In some countries, such as Romania and Bulgaria, the performance distribution sk
 <div>
   ${selectCountry}
 </div>
-<div class="grid grid-cols-2" style="grid-auto-rows: auto auto;">
+<div class="grid grid-cols-2" style="grid-auto-rows: auto auto auto;">
 <div class="card grid-colspan-1">
   ${wrapsvg(mathEscsChart, `Math over ESCS ${country}.svg`)}
 </div>
 <div class="card grid-colspan-1">
   ${wrapsvg(readEscsChart, `Reading over ESCS ${country}.svg`)}
+</div>
+<div class="grid-colspan-1">
+  ${Inputs.form({
+    country: Inputs.bind(Inputs.select(countries, {label: "Country:", sort: true}), selectCountry),
+    year: Inputs.bind(Inputs.range([0, years.length - 1], {label: "Year:", step: 1, value: 0, format: x => years[x], width: "inherit"}), selectYear)
+  })}
+</div>
+<div class="grid-colspan-1"></div>
+<div class="card grid-colspan-1">
+  ${wrapsvg(mathEscsDistributionChart, `Math levels over ESCS ${country} ${selectedYear}.svg`)}
+</div>
+<div class="card grid-colspan-1">
+  ${wrapsvg(readEscsDistributionChart, `Reading levels over ESCS ${country} ${selectedYear}.svg`)}
 </div>
 </div>
 
@@ -401,18 +465,31 @@ The diagram highlights that **having low-educated parents is an even stronger pr
 <div>
   ${Inputs.bind(Inputs.select(countries, {label: "Country:", sort: true}), selectCountry)}
 </div>
-<div class="grid grid-cols-2" style="grid-auto-rows: auto auto;">
+<div class="grid grid-cols-2" style="grid-auto-rows: auto auto auto;">
 <div class="card grid-colspan-1">
   ${wrapsvg(mathIscedChart, `Math over parents' education ${country}.svg`)}
 </div>
 <div class="card grid-colspan-1">
   ${wrapsvg(readIscedChart, `Reading over parents' education ${country}.svg`)}
 </div>
+<div class="grid-colspan-1">
+  ${Inputs.form({
+    country: Inputs.bind(Inputs.select(countries, {label: "Country:", sort: true}), selectCountry),
+    year: Inputs.bind(Inputs.range([0, years.length - 1], {label: "Year:", step: 1, value: 0, format: x => years[x], width: "inherit"}), selectYear)
+  })}
+</div>
+<div class="grid-colspan-1"></div>
+<div class="card grid-colspan-1">
+  ${wrapsvg(mathIscedDistributionChart, `Math levels over ISCED ${country} ${selectedYear}.svg`)}
+</div>
+<div class="card grid-colspan-1">
+  ${wrapsvg(readIscedDistributionChart, `Reading levels over ISCED ${country} ${selectedYear}.svg`)}
+</div>
 </div>
 
 ## Variation in math and reading skills by number of books owned
 
-The number of books in a household appears to have a **similar influence on both math and reading scores**, reinforcing the close relationship between these two skill sets. However, owning a large number of books is often **not as strong a predictor of excellent academic performance** as belonging to the highest socioeconomic quartile.
+The number of books in a household appears to have a **similar influence on both math and reading scores**, reinforcing the close relationship between these two skill sets. However, owning a large number of books is often **not as strong a predictor of excellent academic performance** as belonging to the highest socioeconomic quartile. In contrast, **having only up to a dozen books** at home is one of the strongest factors we identified in our dataset for **major learning struggles** in school.
 
 Interestingly, having more than 500 books does not provide an advantage over having between 200 and 500—and in some cases, it even correlates with slightly lower performance. This may be due to **estimation difficulties** among respondents, leading to inconsistencies in reporting.
 
@@ -432,7 +509,7 @@ Interestingly, having more than 500 books does not provide an advantage over hav
 
 Finally, we included in our analysis a factor not part of the ESCS index: not just the presence of a **computer**—whether a desktop or laptop—in the home, but also its availability for use and the **frequency with which students actively engage with it**.
 
-Over the course of the survey period, we observe the progressive emergence of a new form of inequality: daily access to a personal computer has increasingly become a **prerequisite for maintaining average academic performance**. Once again, this holds for **both math and reading skills**.
+Over the course of the survey period, we observe that what began as a tool for democratizing access to knowledge gradually evolved into a new source of inequality: daily access to a personal computer has increasingly become a **prerequisite for maintaining average academic performance**. Once again, this holds for **both math and reading skills**.
 
 <div>
   ${Inputs.bind(Inputs.select(countries, {label: "Country:", sort: true}), selectCountry)}

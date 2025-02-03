@@ -2,24 +2,42 @@ import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "npm:d3";
 
 const maps = {
+  math: {
+    "Below Level 1": "math_below_lv1",
+    "Level 1": "math_lv1",
+    "Level 2": "math_lv2",
+    "Level 3": "math_lv3",
+    "Level 4": "math_lv4",
+    "Level 5": "math_lv5",
+    "Level 6": "math_lv6"
+  },
+  read: {
+    "Below Level 1a": "read_below_lv1a",
+    "Level 1a": "read_lv1a",
+    "Level 2": "read_lv2",
+    "Level 3": "read_lv3",
+    "Level 4": "read_lv4",
+    "Level 5": "read_lv5",
+    "Level 6": "read_lv6"
+  },
   escs: {
-    "Lower ESCS quartile": "quart1_escs",
-    "Second ESCS quartile": "quart2_escs",
-    "Third ESCS quartile": "quart3_escs",
-    "Upper ESCS quartile": "quart4_escs"
+    "Lower quartile": "quart1_escs",
+    "Second quartile": "quart2_escs",
+    "Third quartile": "quart3_escs",
+    "Upper quartile": "quart4_escs"
   },
   isced: {
-    "Low education parents": "low_ed_parent",
-    "Medium education par.": "medium_ed_parent",
-    "High education parents": "high_ed_parent"
+    "Low": "low_ed_parent",
+    "Medium": "medium_ed_parent",
+    "High": "high_ed_parent"
   },
   books: {
-    "0–10 books": "books_0_10",
-    "11–25 books": "books_11_25",
-    "26–100 books": "books_26_100",
-    "101–200 books": "books_101_200",
-    "201–500 books": "books_201_500",
-    "500+ books": "books_500_more",
+    "0–10": "books_0_10",
+    "11–25": "books_11_25",
+    "26–100": "books_26_100",
+    "101–200": "books_101_200",
+    "201–500": "books_201_500",
+    "500+": "books_500_more",
   },
   cultural: {
     "No classical literature": "classics_no",
@@ -79,6 +97,14 @@ function caption() {
   return span;
 }
 
+function cleanLabel(label) {
+  return label.replace(/\s*\(\d+\)$/, "");
+}
+
+function countryName(country) {
+  return `${["European Union (28)", "Netherlands", "United Kingdom"].includes(country) ? "the " : ""}${cleanLabel(country)}`
+};
+
 export function serialize (svg) {
   const xmlns = "http://www.w3.org/2000/xmlns/";
   const xlinkns = "http://www.w3.org/1999/xlink";
@@ -93,17 +119,17 @@ export function serialize (svg) {
 };
 
 export function reshape(data, group) {
-  const categories = maps[group];
-  if (!categories) {
+  const levels = maps[group];
+  if (!levels) {
     throw new Error(`Unknown parameter: ${group}`);
   }
 
   return data.flatMap(d => 
-    Object.entries(categories).flatMap(([category, suffix]) => [
+    Object.entries(levels).flatMap(([level, suffix]) => [
       {
         year: d.year,
         country: d.country,
-        category,
+        level,
         test: "Math",
         mean_score: d[`mean_math_${suffix}`],
         se: d[`se_mean_math_${suffix}`],
@@ -111,7 +137,7 @@ export function reshape(data, group) {
       {
         year: d.year,
         country: d.country,
-        category,
+        level,
         test: "Reading",
         mean_score: d[`mean_read_${suffix}`],
         se: d[`se_mean_read_${suffix}`],
@@ -147,7 +173,7 @@ export function plotLevels({
 
   const createTooltip = (label) =>
     Plot.tip(
-      plotData.filter(d => d.category === label),
+      plotData.filter(d => d.level === label),
       Plot.pointerX({
         x: "year",
         y: "mean_score",
@@ -165,7 +191,7 @@ export function plotLevels({
     title,
     subtitle,
     caption: caption(),
-    x: { line: true, domain: xDomain, label: "Year", tickFormat: d => `${d}`, insetRight: 95 },
+    x: { line: true, domain: xDomain, label: "Year", tickFormat: d => `${d}`, insetRight: 50 },
     y: { line: true, domain: [minY, maxY], label: `Average ${test} Score` },
     color: { type: "categorical", domain: [...levels.map(d => d.level), ...labels], range: colors },
     marks: [
@@ -191,7 +217,7 @@ export function plotLevels({
       Plot.lineY(data.get("European Union (28)").filter(d => d.test === test && !isNaN(d.mean_score)), {
         x: "year",
         y: "mean_score",
-        stroke: "category",
+        stroke: "level",
         strokeOpacity: 0.2,
         imageFilter: "grayscale(0.7)",
       }),
@@ -206,22 +232,22 @@ export function plotLevels({
         x: "year",
         y1: d => d.mean_score - d.se,
         y2: d => d.mean_score + d.se,
-        stroke: "category",
+        stroke: "level",
         strokeOpacity: 0.3,
         clip: true,
       }),
       Plot.lineY(plotData, {
         x: "year",
         y: "mean_score",
-        z: "category",
-        stroke: "category",
+        z: "level",
+        stroke: "level",
         marker: true
       }),
       Plot.text(plotData, Plot.selectLast({
         x: "year",
         y: "mean_score",
-        z: "category",
-        text: "category",
+        z: "level",
+        text: "level",
         textAnchor: "start",
         dx: 7,
         fill: "currentColor",
@@ -233,7 +259,7 @@ export function plotLevels({
   });
 };
 
-export function plotTrend({width, data, test, countries}) {
+export function plotTrend({width, data, test, countries, xDomain = [2000, 2022]}) {
   let orderedCountries = countries.filter(c => c !== "European Union (28)").concat("European Union (28)");
   let colorScale = d3.scaleOrdinal(orderedCountries, color);
   let y = test == "Math" ? "mean_math" : "mean_read";
@@ -243,7 +269,7 @@ export function plotTrend({width, data, test, countries}) {
     title: `Trends in ${test.toLowerCase()} skills in the European Union (28): 2000-2022`,
     subtitle:`Average scores on the PISA ${test.toLowerCase()} literacy scale over the survey period, by education system.`,
     caption: caption(),
-    x: { grid: true, domain: [2000, 2022], label: "Year", tickFormat: d => `${d}` },
+    x: { grid: true, domain: xDomain, label: "Year", tickFormat: d => `${d}` },
     y: { axis: "both", domain: [390, 570], label: `Average ${test} Score`, inset: 10 },
     color: { domain: orderedCountries, range: color },
     marks: [
@@ -315,4 +341,99 @@ function showEU() {
   });
 
   return plot;
+};
+
+export function distribution(data, group) {
+  const levels = maps[group];
+
+  if (!levels) {
+    throw new Error(`Unknown parameter: ${group}`);
+  }
+
+  const testLevels = [
+    ...Object.entries(maps["math"]).map(([level, suffix]) => ({
+      test: "Math",
+      level,
+      suffix
+    })),
+    ...Object.entries(maps["read"]).map(([level, suffix]) => ({
+      test: "Reading",
+      level,
+      suffix
+    }))
+  ];
+
+  return data.flatMap(d =>
+    testLevels.flatMap(({ test, level, suffix }) =>
+      Object.entries(levels).map(([groupLevel, groupSuffix]) => ({
+        year: d.year,
+        country: d.country,
+        test,
+        y: level,
+        x: groupLevel,
+        percentage: ((d[groupSuffix] * d[`${suffix}_${groupSuffix}`]) / 100) ?? 0
+      }))
+    )
+  );
+};
+
+export function plotGrid({width, year, country, data, test, group}) {
+
+  let levels = Object.keys(test === "Math" ? maps["math"] : maps["read"]);
+  let label = group == "escs" ? "Socioeconomic Status" : "Parents' Education";
+
+  return Plot.plot({
+    width,
+    height: 500,
+    marginLeft: 60,
+    marginBottom: 50,
+    title: `Distribution of ${test.toLowerCase()} proficiency by ${label.toLowerCase()} in ${countryName(country)}: ${year}`,
+    subtitle: `Percentage of students at each PISA ${test.toLowerCase()} proficiency level across ${group == "escs" ? "ESCS quartiles" : "aggregated ISCED levels"}, with dot size representing category frequency.`,
+    caption: caption(),
+    grid: true,
+    x: {label: label, domain: Object.keys(maps[group])},
+    y: {label: `${test} Proficiency`, domain: levels, reverse: true},
+    r: {range: [0.5, 20]},
+    color: {
+      domain: [...levels.slice(1), levels[0]]
+    },
+    marks: [
+      Plot.dot(data.filter(d => d.test === test && d.country === country && d.year === year), {
+        x: "x",
+        y: "y",
+        fill: "y",
+        r: "percentage",
+        stroke: "currentColor",
+        strokeWidth: 0.5,
+        channels: {
+          test: {
+            value: "y",
+            label: test,
+            scale: "color"
+          },
+          group: {
+            value: "x",
+            label: group.toUpperCase()
+          },
+          percentage: {
+            value: "percentage",
+            label: "Frequency (%)"
+          },
+        },
+        tip: {
+          format: {
+            test: true,
+            group: true,
+            percentage: d3.format(".2g"),
+            x: false,
+            y: false,
+            r: false,
+            fill: false
+          }
+        }
+      }),
+      Plot.axisY({lineWidth: 5}),
+      Plot.axisX({lineWidth: 5}),
+    ]
+  });
 };

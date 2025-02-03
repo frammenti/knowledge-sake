@@ -1,6 +1,10 @@
 @import url("observablehq:default.css");
 @import url("theme-cotton,near-midnight.css");
 
+:root {
+  --range-width: 400px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --theme-foreground-focus: hsl(150, 50%, 40%);
@@ -27,6 +31,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-anchor: none;
 }
 
 body {
@@ -83,7 +88,7 @@ datalist {
   font-family: system-ui;
   font-size: 10px;
   width: inherit;
-  max-width: 600px;
+  max-width: var(--range-width);
   box-sizing: border-box;
 }
 
@@ -97,7 +102,7 @@ input[type=number] {
 }
 
 input[type=range] {
-  max-width: 600px;
+  max-width: var(--range-width);
 }
 
 input[type=range]:input {
@@ -151,4 +156,14 @@ h2:not(.card h2):not(h1 + h2):not(hr + h2) {
 
 .underlined.read {
   text-decoration-color: #efb118;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  padding: 1.8rem;
+}
+
+.card h3 {
+  margin: 0.3rem 0 0.6rem;
 }
