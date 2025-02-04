@@ -13,6 +13,8 @@
     "d3-dsv": "^3.0.1",
     "d3-time-format": "^4.1.0",
     "fullpage.js": "^4.0.31",
+    "jsonstat-suite": "^3.5.0",
+    "jsonstat-toolkit": "^1.5.3",
     "markdown-it-footnote": "^4.0.0",
     "topojson-client": "^3.1.0"
   },

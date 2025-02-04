@@ -34,7 +34,7 @@ export default {
     },
     {
       name: "Metadata",
-      path: "metadata/index",
+      path: "metadata",
       pages: [
       ]
     },

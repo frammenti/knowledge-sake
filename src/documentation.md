@@ -19,7 +19,7 @@ The datasets used to investigate how socio-cultural and economic inequalities in
 
 | Name | Source | URI | Metadata | Privacy | Licence | Format |
 | -------- | ------- | ------- | ------- | ------- | ------- | ------- |
-| OECD PISA 2000-2022 Reports | [OECD](https://www.oecd.org/en/about/programmes/pisa/pisa-data.html) | | [Provided](https://www.oecd.org/en/about/programmes/pisa/pisa-data.html#methodology) | [OECD Privacy Guidelines](https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0188) | [OECD, CC BY 4.0](https://www.oecd.org/en/about/terms-conditions.html) | .sav |
+| OECD PISA 2000-2022 Reports | [OECD](https://www.oecd.org/en/about/programmes/pisa/pisa-data.html) | | [Provided](https://www.oecd.org/en/about/programmes/pisa/pisa-data.html#methodology) | [OECD Privacy Guidelines](https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0188) | [OECD, CC BY 4.0](https://www.oecd.org/en/about/terms-conditions.html) | .sav .sps+.dat .csv |
 | World Bank Development Indicators | [WBG](https://datacatalog.worldbank.org/search/dataset/0037712/World-Development-Indicators) | [WDI_EXCEL.xlsx](https://datacatalogfiles.worldbank.org/ddh-published/0037712/DR0045574/WDI_EXCEL_2024_12_16.zip?versionId=2025-01-15T18:08:40.1137708Z) | [Provided](https://datacatalogapi.worldbank.org/ddhxext/DatasetDownload?dataset_unique_id=0037712) |  [Data Privacy](https://www.worldbank.org/en/programs/accountability/data-privacy) | [CC BY 4.0](https://datacatalog.worldbank.org/public-licenses) | .csv .xlsx |
 | New entrants by education level, programme orientation, sex and field of education | [Eurostat](https://ec.europa.eu/eurostat/web/products-datasets/-/educ_uoe_ent02) | [estat_educ_uoe_ent02_filtered_en.csv](https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/educ_uoe_ent02/A.NR.TOTAL+F01+F02+F03+F04+F05+F06+F07+F08+F09+F10.ED6.T.EU27_2020+EU28+BE+BG+CZ+DK+DE+EE+IE+EL+ES+FR+HR+IT+CY+LV+LT+LU+HU+MT+NL+AT+PL+PT+RO+SI+SK+FI+SE+UK?format=SDMX-CSV&lang=en&label=label_only&startPeriod=2013) | [Provided](https://ec.europa.eu/eurostat/cache/metadata/en/rd_esms.htm) | [Regulation (EU) 2018/1725](https://commission.europa.eu/privacy-policy-websites-managed-european-commission_en) | [CC BY 4.0](https://ec.europa.eu/eurostat/help/copyright-notice) | .tsv .csv |
 
@@ -37,10 +37,14 @@ As such you can check out the [output.xml](link) file we created out of the mash
 
 ## Quality Analysis
 
-<div class="note" label="Microdata accessibility" style="padding-bottom: 1.5rem;" markdown>
+<div class="note" label="Microdata accessibility">
+
 Publicly available datasets on the topic of education-to-work transition are aggregated in such a way that makes it difficult to link socioeconomic status, field of study (ISCED-13) occupation level (ISCO-08) and occupational activity (NACE), except in rare cases—with poor geopolitical and temporal coverage.
 
-More robust analysis would require access to **Eurostat Micro Data** on the EU Labor Force Survey (EU-LFS) and EU Statistics on Income and Living Conditions (EU-SILC). In fact, unlike the PISA questionnaires, the **public use files** (PUFs) of these two key statistical sources are randomized and have no informational value. However, the use of non-publicly available sources is outside the scope of our project.
+More robust analysis would require access to **Eurostat Micro Data** on the EU Labor Force Survey (EU-LFS) and EU Statistics on Income and Living Conditions (EU-SILC).
+
+In fact, unlike the PISA questionnaires, the **public use files** (PUFs) of these two key statistical sources are randomized and have no informational value. However, the use of non-publicly available sources is outside the scope of our project.
+
 </div>
 
 * **OECD**: The OECD ensures the quality of its PISA data through rigorous methodologies and robust sampling techniques. The data is collected, validated, and analyzed following the [OECD Privacy Guidelines](https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0188). Content published from 1 July 2024 is released under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en) license, while content published before this date follows the [the OECD terms and conditions](https://www.oecd.org/en/about/terms-conditions.html). The credibility of PISA data is reinforced by its widespread use in education policy and research.

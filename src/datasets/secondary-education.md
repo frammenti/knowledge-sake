@@ -5,7 +5,7 @@ toc: false
 import {plotLevels, plotTrend, plotGrid, reshape, distribution, serialize } from "../components/pisaCharts.js";
 ```
 ```js
-const data = FileAttachment("source/D1_OECD_PISA.csv").csv({typed:true});
+const data = FileAttachment("source/D1_secondary_education.csv").csv({typed:true});
 ```
 ```js
 const yearMin = d3.min(data, d => d.year);
@@ -378,15 +378,15 @@ function wrapsvg (svgnode, filename = 'chart.svg') {
 
 # Secondary Education: OECD PISA Questionnaires
 
-## Influence of socio-cultural-economic factors in 15-year-olds' aptitude for math and reading
+<h2>Influence of socio-cultural-economic factors in 15-year-olds' aptitude for math and reading</h2>
 
 The PISA questionnaires provide a vantage point on the educational situation of European adolescents over a period of more than two decades. Our analysis focuses on both cross-country comparisons and the role of social stratification within each country.
 
-Before delving into the results, a twofold premise is necessary:
+<div class="note">
 
-  - For convenience, the EU average is considered fixed at 28 countries (pre-Brexit). This means that the analysis collects data from all countries for which PISA results are available, even though they were not yet or no longer part of the EU.
+For convenience, the EU average is considered fixed at 28 countries (pre-Brexit). This means that the analysis collects data from all countries for which PISA results are available, even though they were not yet or no longer part of the EU.
 
-  - The single questionnaires present very in-depth and compelling questions, but in choosing which factors to study, we favored those that were consistent over the years and allowed for a longitudinal analysis.
+</div>
 
 ## Variation of math and reading skills among school systems of EU countries
 
@@ -456,11 +456,13 @@ Because the ESCS index is a highly aggregate measure, we explored how its indivi
 
 In the PISA dataset, students' responses on the education level of both parents are converted into a single value, the **higher education level of the two** according to the **International Standard Classification of Education (ISCED)**. To ensure comparability between 2000 and 2022 despite the 2011 ISCED revision, we grouped education levels into three broader categories, following [Eurostat guidelines](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=International_Standard_Classification_of_Education_(ISCED)):
 
-  - **Low education (ISCED 0-2):** Completed primary education
-  - **Medium education (ISCED 3-4):** Completed secondary education (high school or vocational training)
+  - **Low education (ISCED 0-2):** Completed primary education or lower secondary education (middle school)
+  - **Medium education (ISCED 3-4):** Completed upper secondary education (high school or vocational training)
   - **High education (ISCED 5-8):** Tertiary education ranging from a bachelor's degree to a PhD
 
-The diagram highlights that **having low-educated parents is an even stronger predictor of poor academic performance than a low socioeconomic index**, with this effect often being more pronounced in math than in reading. However, at higher education levels, this pattern is less clear, suggesting that while low parental education is a strong disadvantage, additional academic benefits from higher parental education do not always scale proportionally. Indeed, in some countries such as Italy, the performance gap between students with middle- and highly educated parents was not statistically significant for years, suggesting that **tertiary education does not always yield additional advantages over secondary education**.
+The diagrams highlight that **having low-educated parents is an even stronger predictor of poor academic performance than a low socioeconomic index**, with this effect often being more pronounced in math than in reading. This is because it captures a more extreme situation of disadvantage, with only a handful of parents not having completed upper secondary education in all European countries.
+
+However, at higher education levels, this pattern is less clear, suggesting that while low parental education is a strong disadvantage, additional academic benefits from higher parental education do not always scale proportionally. Indeed, in some countries such as Italy, the performance gap between students with middle- and highly educated parents was not statistically significant for years, suggesting that **tertiary education does not always yield additional advantages over secondary education**.
 
 <div>
   ${Inputs.bind(Inputs.select(countries, {label: "Country:", sort: true}), selectCountry)}
@@ -548,6 +550,12 @@ For this reason, linking questionnaire responses directly to a student’s plaus
 
 To ensure that these steps were performed correctly, we used the R library [Rrepest](https://cran.r-project.org/web/packages/Rrepest/index.html), also developed by OECD, which provides [example analyses](https://gitlab.algobank.oecd.org/edu_data/rrepest/-/blob/main/Development/Examples.R) as well. The code for producing our dataset can be reviewed [here](https://github.com/frammenti/knowledge-sake/blob/main/src/scripts/PISA.R).
 
+<div class="tip" label>
+
+<b>Intrigued? [Take the test](https://www.oecd.org/en/about/programmes/pisa/pisa-test.html)</b>
+
+</div>
+
 [^1]: Jerrim, J., Lopez-Agudo, L. A., Marcenaro-Gutierrez, O. D., Shure, N. (2017). “To weight or not to weight?: The case of PISA data.” In _Proceedings of the XXVI Meeting of the Economics of Education Association_, Murcia, Spain (pp. 29-30). <https://2017.economicsofeducation.com/user/pdfsesiones/025.pdf>
 
 ```js
@@ -571,27 +579,10 @@ const se = Generators.input(toggleSe);
 
 <style>
 
-  #averages-inputs {
-    display: grid;
-  }
-
-  #averages-inputs form {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
   @media (min-width: 640px) {
-    #averages-inputs {
-      grid-template-columns: 0.4fr 1.3fr 1fr;
-    }
-
     .symbols-swatches {
       margin: 0 0 0 5rem;
     }
-  }
-
-  .card h2, .card h3 {
-    margin-right: 1rem;
   }
 
 </style>
