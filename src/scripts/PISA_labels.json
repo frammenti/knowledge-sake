@@ -1,0 +1,217 @@
+{
+  "2000": {
+    "books": {
+      "0_10": 2,
+      "11_25": 3,
+      "26_100": 4,
+      "101_200": 5,
+      "201_500": 6,
+      "more_500": 7
+    },
+    "artworks": {
+      "yes": 1,
+      "no": 2
+    },
+    "classics": {
+      "yes": 1,
+      "no": 2
+    },
+    "lonely": {
+      "strongly_disagree": 1,
+      "disagree": 2,
+      "agree": 3,
+      "strongly_agree": 4
+    },
+    "computer": {
+      "never": 1,
+      "yearly": 2,
+      "monthly": 3,
+      "weekly": 4,
+      "daily": 5
+    }
+  },
+  "2003": {
+    "books": {
+      "0_10": 1,
+      "11_25": 2,
+      "26_100": 3,
+      "101_200": 4,
+      "201_500": 5,
+      "more_500": 6
+    },
+    "artworks": {
+      "yes": 1,
+      "no": 2
+    },
+    "classics": {
+      "yes": 1,
+      "no": 2
+    },
+    "lonely": {
+      "strongly_agree": 1,
+      "agree": 2,
+      "disagree": 3,
+      "strongly_disagree": 4
+    },
+    "computer": {
+      "daily": 1,
+      "weekly": 2,
+      "monthly": 3,
+      "yearly": 4,
+      "never": 5
+    }
+  },
+  "2006": {
+    "books": {
+      "0_10": 1,
+      "11_25": 2,
+      "26_100": 3,
+      "101_200": 4,
+      "201_500": 5,
+      "more_500": 6
+    },
+    "artworks": {
+      "yes": 1,
+      "no": 2
+    },
+    "classics": {
+      "yes": 1,
+      "no": 2
+    },
+    "computer": {
+      "daily": 1,
+      "weekly": 2,
+      "monthly": 3,
+      "yearly": 4,
+      "never": 5
+    }
+  },
+  "2009": {
+    "books": {
+      "0_10": 1,
+      "11_25": 2,
+      "26_100": 3,
+      "101_200": 4,
+      "201_500": 5,
+      "more_500": 6
+    },
+    "artworks": {
+      "yes": 1,
+      "no": 2
+    },
+    "classics": {
+      "yes": 1,
+      "no": 2
+    },
+    "computer": {
+      "never": 1,
+      "monthly": 2,
+      "weekly": 3,
+      "daily": 4
+    }
+  },
+  "2012": {
+    "books": {
+      "0_10": 1,
+      "11_25": 2,
+      "26_100": 3,
+      "101_200": 4,
+      "201_500": 5,
+      "more_500": 6
+    },
+    "artworks": {
+      "yes": 1,
+      "no": 2
+    },
+    "classics": {
+      "yes": 1,
+      "no": 2
+    },
+    "lonely": {
+      "strongly_agree": 1,
+      "agree": 2,
+      "disagree": 3,
+      "strongly_disagree": 4
+    }
+  },
+  "2015": {
+    "books": {
+      "0_10": 1,
+      "11_25": 2,
+      "26_100": 3,
+      "101_200": 4,
+      "201_500": 5,
+      "more_500": 6
+    },
+    "artworks": {
+      "yes": 1,
+      "no": 2
+    },
+    "classics": {
+      "yes": 1,
+      "no": 2
+    },
+    "lonely": {
+      "strongly_agree": 1,
+      "agree": 2,
+      "disagree": 3,
+      "strongly_disagree": 4
+    }
+  },
+  "2018": {
+    "books": {
+      "0_10": 1,
+      "11_25": 2,
+      "26_100": 3,
+      "101_200": 4,
+      "201_500": 5,
+      "more_500": 6
+    },
+    "artworks": {
+      "yes": 1,
+      "no": 2
+    },
+    "classics": {
+      "yes": 1,
+      "no": 2
+    },
+    "lonely": {
+      "strongly_agree": 1,
+      "agree": 2,
+      "disagree": 3,
+      "strongly_disagree": 4
+    }
+  },
+  "2022": {
+    "books": {
+      "0_10": 2,
+      "11_25": 3,
+      "26_100": 4,
+      "101_200": 5,
+      "201_500": 6,
+      "more_500": 7
+    },
+    "artworks": {
+      "no": 1,
+      "yes": 2
+    },
+    "classics": {
+      "no": 1,
+      "yes": 2
+    },
+    "lonely": {
+      "strongly_agree": 1,
+      "agree": 2,
+      "disagree": 3,
+      "strongly_disagree": 4
+    },
+    "computer": {
+      "never": 1,
+      "monthly": 2,
+      "weekly": 3,
+      "daily": 4,
+      "more_daily": 5,
+      "not_available": 6
+    }
+  }
+}
