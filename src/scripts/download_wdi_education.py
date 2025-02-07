@@ -3,9 +3,9 @@ import pandas as pd
 import os
 
 # Filepath of dataset
-file_path_csv = '../datasets/source/D3_WDI_education.csv'
-file_path_csv_2 = '../datasets/source/D3_WDI_education_processed.csv'
-file_path_correspondance = '../datasets/source/D3_WDI_education_correspondance.csv'
+file_path_csv = '../datasets/source/csv/D3/D3_WDI_education.csv'
+file_path_csv_2 = '../datasets/source/csv/D3/D3_WDI_education_processed.csv'
+file_path_correspondance = '../datasets/source/csv/D3/D3_WDI_education_correspondance.csv'
 file_path_metadata = '../metadata/D3_WDI_education_metadata.csv'
 
 

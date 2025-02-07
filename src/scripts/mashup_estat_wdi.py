@@ -36,7 +36,7 @@ if not os.path.exists(file):
 # installable using : `pip install python-calamine`
 world_bank_df = pd.read_excel(file, sheet_name="Data", engine="calamine")
 
-eurostat_df = pd.read_csv('../datasets/source/D2_undergraduate_enrollment.csv')
+eurostat_df = pd.read_csv('../datasets/source/csv/D2/D2_undergraduate_enrollment.csv')
 
 # Convert wide format to long format
 world_bank_df = world_bank_df.melt(

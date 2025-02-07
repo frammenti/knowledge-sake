@@ -9,7 +9,7 @@
 # curl --output 2018.zip "https://webfs.oecd.org/pisa2018/SPSS_STU_QQQ.zip"
 # curl --output 2022.zip "https://webfs.oecd.org/pisa2022/STU_QQQ_SPSS.zip"
 
-# To run the code, the directory structure must be such as:
+# To execute the code, the directory tree should look like the following:
 # .
 # ├── PISA
 # │   ├── 2000math.sav
@@ -36,7 +36,7 @@ library(Rrepest)
 library(haven)
 library(labelled)
 
-years = c('2000', '2003', '2006', '2009', '2012', '2015', '2018', '2022')
+years <- c('2000', '2003', '2006', '2009', '2012', '2015', '2018', '2022')
 
 countries <- c('AUT','BEL','BGR','CZE','CYP','DEU','DNK','ESP','EST','FIN',
                'FRA','GBR','GRC','HRV','HUN','IRL','ITA','LTU','LUX','LVA',
@@ -51,7 +51,7 @@ labels <- list()
 label_map <- fromJSON("PISA_labels.json", simplifyVector = FALSE)
 
 # Store results
-res_codes <- c('mean_scores', 'mean_scores_escs', 'mean_scores_hisced', 'mean_scores_books', 'mean_scores_artworks', 'mean_scores_classics', 'mean_scores_lonely', 'mean_scores_computer', 'corr_scores', 'freq_scores', 'freq_escs', 'freq_hisced', 'freq_scores_escs', 'freq_scores_hisced', 'freq_books_etc')
+res_codes <- c('mean_scores', 'mean_scores_escs', 'mean_scores_hisced', 'mean_scores_books', 'mean_scores_artworks', 'mean_scores_classics', 'mean_scores_lonely', 'mean_scores_computer', 'corr_scores', 'freq_scores', 'freq_escs', 'freq_hisced', 'freq_scores_escs', 'freq_scores_hisced', 'freq_books')
 res <- setNames(vector("list", length(res_codes)), res_codes)
 
 # Configuration by year
@@ -676,12 +676,12 @@ for (i in seq_along(years)) {
     )
   ))
 
-  # Frequency of books, artworks, classics, loneliness, computer use
-  res[['freq_books_etc']] <- append(res[['freq_books_etc']], list(
+  # Frequency of books
+  res[['freq_books']] <- append(res[['freq_books']], list(
     (
       df |> safe_Rrepest(
         statistic = 'freq',
-        target = others,
+        target = 'books',
         svy = config$survey, 
         by = 'area',
         flag = FALSE,
@@ -710,5 +710,5 @@ full_res <- lapply(res, bind_rows)
 
 for (i in seq_along(res_codes)) {
   code <- res_codes[i]
-  write.csv(full_res[[code]], paste0('../datasets/source/D1.',i,'_PISA_', code, ".csv"), row.names = FALSE, na = "")
+  write.csv(full_res[[code]], paste0('../datasets/source/csv/D1/D1.',i,'_PISA_', code, ".csv"), row.names = FALSE, na = "")
 }

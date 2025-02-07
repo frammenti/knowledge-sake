@@ -102,4 +102,4 @@ check_df = check_df[['Total Growth Rate (%)']]
 
 df = df.merge(check_df, how='left', on=['Country', 'Year'])
 
-df.to_csv('../datasets/source/D2_undergraduate_enrollment.csv')
+df.to_csv('../datasets/source/csv/D2/D2_undergraduate_enrollment.csv')
