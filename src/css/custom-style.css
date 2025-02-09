@@ -144,9 +144,9 @@ h2:not(.card h2):not(h1 + h2):not(hr + h2) {
   margin-top: 2rem;
 }
 
-  .card h2, .card h3 {
-    margin-right: 1rem;
-  }
+.card h2, .card h3 {
+  margin-right: 1rem;
+}
 
 .underlined {
   text-decoration: underline;
@@ -154,11 +154,11 @@ h2:not(.card h2):not(h1 + h2):not(hr + h2) {
   text-decoration-thickness: 2px;
 }
 
-.underlined.math {
+.underlined.u-blue {
   text-decoration-color: #4269d0;
 }
 
-.underlined.read {
+.underlined.u-yellow {
   text-decoration-color: #efb118;
 }
 
@@ -184,4 +184,56 @@ h2:not(.card h2):not(h1 + h2):not(hr + h2) {
 
 .tip[label=""]::before, .note[label=""]::before {
   margin-bottom: 0;
+}
+
+.table-card {
+  padding: 0;
+  max-width: 750px;
+}
+
+.table-card > div:first-child {
+  padding: 1rem;
+}
+
+.table-card > form {
+  margin-top: 0;
+}
+
+.table-card form table tr > :last-of-type {
+  padding-right: 30px;
+}
+
+.table-card table thead th {
+  top: 2rem;
+}
+
+.table-card caption {
+  height: 1rem;
+  box-sizing: content-box;
+  padding: 0.5rem;
+  background: var(--theme-background);
+  margin: 0;
+  font: inherit;
+  font-weight: bold;
+  caption-side: top;
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 640px) {
+  .table-card > div:first-child {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 640px) {
+  .symbols-swatches {
+    margin: 0 0 0 5rem;
+  }
+
+  .table-card > div:first-child {
+    display: flex;
+    gap: 1.5rem;
+    max-width: 750px;
+  }
 }

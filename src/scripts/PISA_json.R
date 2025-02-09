@@ -121,6 +121,7 @@ add_labels <- function(idx, df) {
   set_names(labels, idx)
 }
 
+# Bind datasets paths and labels
 title_desc <- map2(full_titles, desc, ~ list(title = .x, desc = .y))
 
 j$link$item <- imap(j$link$item, function(d, y) {
@@ -134,13 +135,14 @@ j$link$item <- imap(j$link$item, function(d, y) {
     )
   )
   
+  # Add dimension roles
   d$role <- list(
     time = list('year'),
     geo = list('area'),
     metric = list('metric')
   )
   
-  d$updated <- format(Sys.Date(), '%Y-%m-%d')
+  d$updated <- format(Sys.Date(), '%Y-%m-%d') # Add update date
   
   d$dimension <- imap(d$dimension, function(dim, name) {
     dim$label <- map_df$label[match(name, map_df$uri)]
@@ -153,15 +155,16 @@ j$link$item <- imap(j$link$item, function(d, y) {
   d$dimension$concept$label <- 'Indicator'
   
   d$dimension$year$label <- 'Year'
-  d$dimension$year$category <- d$dimension$year$category[c('index')]
+  d$dimension$year$category <- d$dimension$year$category[c('index')] # Remove year labels
   
   d$dimension$area$label <- 'Country'
   cnt <- d$dimension$area$category$index
-  d$dimension$area$category$child <- set_names(list(setdiff(cnt, "EU28")), "EU28")
+  d$dimension$area$category$child <- set_names(list(setdiff(cnt, "EU28")), "EU28") # Set EU as parent area
   
   d$dimension$metric$label <- 'Measure'
   metrics <- d$dimension$metric$category$index
   
+  # Add measurement units to metrics
   d$dimension$metric$category$unit <- set_names(
     map(metrics, ~ list(
       symbol = map_df$symbol[match(.x, map_df$key)],
@@ -170,14 +173,13 @@ j$link$item <- imap(j$link$item, function(d, y) {
     metrics
   )
   
+  # Order each dataset metadata
   d <- d[c('class', 'label', 'updated', 'link', 'value', 'id', 'size', 'role', 'dimension')]
   
   d
 })
-  
 
-jfinal <- toJSON(j, pretty = TRUE, digits = NA, auto_unbox = TRUE, na = 'null', null = 'null')  
+jfinal <- toJSON(j, pretty = TRUE, digits = NA, auto_unbox = TRUE, na = 'null', null = 'null')
+jfinal <- gsub('(?<="index":\\s)("[^"]+")', '[\\1]', jfinal, perl = TRUE) # Restore single-element index lists
 write(jfinal, '../datasets/source/json/D1_secondary_education.json')
-
-
 

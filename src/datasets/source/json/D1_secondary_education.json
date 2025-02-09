@@ -5,7 +5,7 @@
   "label": "Datasets on 15-year-old Student Performance and Socio-Economic Background in the EU 2000-2022",
   "note": "The datasets use rescaled indices of economic, social, and cultural status (ESCS) for trend analysis provided by the OECD: those of the years 2000, 2003, 2006, and 2009 have been harmonized to 2015, those of 2012, 2015 and 2018 to 2022.",
   "source": "Organization for Economic Cooperation and Development (OECD), Program for International Student Assessment (PISA), 2000, 2003, 2006, 2009, 2012, 2015, 2018, and 2022 Reading and Mathematics Assessments.",
-  "updated": "2025-02-07",
+  "updated": "2025-02-09",
   "extension": {
     "metadata": [
       {
@@ -45,7 +45,7 @@
       {
         "class": "dataset",
         "label": "Math and Reading Proficiency",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -3502,7 +3502,7 @@
       {
         "class": "dataset",
         "label": "Math and Reading Proficiency by Socio-Economic Status",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -6943,7 +6943,7 @@
       {
         "class": "dataset",
         "label": "Math and Reading Proficiency by Parents' Education",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -9555,7 +9555,7 @@
       {
         "class": "dataset",
         "label": "Math and Reading Proficiency by Book Possession",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -14616,7 +14616,7 @@
             }
           },
           "books": {
-            "label": "No. of books at home",
+            "label": "Number of books at home",
             "category": {
               "index": ["10", "25", "100", "200", "500", "M500"],
               "label": {
@@ -14654,7 +14654,7 @@
       {
         "class": "dataset",
         "label": "Math and Reading Proficiency by Artwork Possession",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -16437,7 +16437,7 @@
       {
         "class": "dataset",
         "label": "Math and Reading Proficiency by Classics' Possession",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -18186,7 +18186,7 @@
             }
           },
           "classics": {
-            "label": "Classical literature at home",
+            "label": "Classics at home",
             "category": {
               "index": ["Y", "N"],
               "label": {
@@ -18220,7 +18220,7 @@
       {
         "class": "dataset",
         "label": "Math and Reading Proficiency by Loneliness",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -20781,7 +20781,7 @@
       {
         "class": "dataset",
         "label": "Math and Reading Proficiency by Frequency of Computer Use",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -23352,11 +23352,11 @@
           "computer": {
             "label": "Frequency of computer use",
             "category": {
-              "index": ["NV", "YR", "MN", "WK", "DY", "MDY", "UA"],
+              "index": ["NV", "YR", "MO", "WK", "DY", "MDY", "UA"],
               "label": {
                 "NV": "Never",
                 "YR": "Few times a year",
-                "MN": "Mean",
+                "MO": "Few times a month",
                 "WK": "Few times a week",
                 "DY": "Every day",
                 "MDY": "Several times a day",
@@ -23389,7 +23389,7 @@
       {
         "class": "dataset",
         "label": "Math, Reading and Socio-Economic Status Correlation",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -26005,7 +26005,7 @@
       {
         "class": "dataset",
         "label": "Distribution of Math and Reading Levels",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -31933,7 +31933,7 @@
       {
         "class": "dataset",
         "label": "Distribution of Socio-Economic Quartiles",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -33354,7 +33354,7 @@
           "concept": {
             "label": "Indicator",
             "category": {
-              "index": "ESCS",
+              "index": ["ESCS"],
               "label": {
                 "ESCS": "Index of Economic, Social and Cultural Status (ESCS)"
               }
@@ -33397,7 +33397,7 @@
       {
         "class": "dataset",
         "label": "Distribution of Parents' Education Level",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -34724,7 +34724,7 @@
           "concept": {
             "label": "Indicator",
             "category": {
-              "index": "HISCED",
+              "index": ["HISCED"],
               "label": {
                 "HISCED": "Parents' Highest Education Level"
               }
@@ -34766,7 +34766,7 @@
       {
         "class": "dataset",
         "label": "Distribution of Math and Reading Levels over Socio-Economic Quartiles",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -58096,7 +58096,7 @@
       {
         "class": "dataset",
         "label": "Distribution of Math and Reading Levels over Parents' Education",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -75629,7 +75629,7 @@
       {
         "class": "dataset",
         "label": "Distribution of Book Possession",
-        "updated": "2025-02-07",
+        "updated": "2025-02-09",
         "link": {
           "alternate": [
             {
@@ -78198,14 +78198,14 @@
           "concept": {
             "label": "Indicator",
             "category": {
-              "index": "NBK",
+              "index": ["NBK"],
               "label": {
-                "NBK": "No. of books at home"
+                "NBK": "Number of books at home"
               }
             }
           },
           "books": {
-            "label": "No. of books at home",
+            "label": "Number of books at home",
             "category": {
               "index": ["10", "25", "100", "200", "500", "M500"],
               "label": {
